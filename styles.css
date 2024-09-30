@@ -28,3 +28,7 @@ body {
 #antagonistContainer {
   position: absolute;
 }
+
+.enemyContainer {
+    position: absolute;
+}

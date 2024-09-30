@@ -2,8 +2,8 @@ class Enemy {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.width = 40;
-    this.height = 40;
+    this.width = 30;
+    this.height = 30;
     this.directionX = 0;
     this.directionY = 0;
     this.speed = 1;
@@ -12,7 +12,7 @@ class Enemy {
     this.sprite = document.createElement('div');
   }
 
-  insertEnemies() {
+  insertEnemy() {
         this.sprite.setAttribute('class', 'enemyContainer');
         this.sprite.style.width = this.width + 'px';
         this.sprite.style.height = this.height + 'px';

@@ -8,13 +8,14 @@ let playerOne;
 let playerTwo;
 let moveHeroInterval;
 let moveAntagonistInterval;
-
+let enemies = [];
 
 // Starting the game:
 
 function startGame() {
   newHero();
   newAntagonist();
+  newEnemy();
 }
 
 // If the characters are still alive, the game goes on:
@@ -22,7 +23,6 @@ function startGame() {
 function stillAlive() {
   if (playerOne.health > 0 && playerTwo.health > 0) {
     playerOne.moveTheHeroHorizontally();
-    playerOne.jum
     playerTwo.moveTheAntagonistHorizontally();
   } else {
     //
@@ -47,6 +47,12 @@ function newAntagonist() {
   moveAntagonistInterval = setInterval(function () {
     stillAlive();
   }, 10);
+}
+
+function newEnemy() {
+  enemies = new Enemy(500, 500);
+  enemies.insertEnemy();
+
 }
 
 startGame();
@@ -98,8 +104,8 @@ window.addEventListener('keydown', function (e) {
       playerTwo.moveTheAntagonistHorizontally();
       break;
     case 'ArrowUp':
-        playerTwo.jumping();
-        break;
+      playerTwo.jumping();
+      break;
   }
 });
 
@@ -107,7 +113,6 @@ window.addEventListener('keyup', function (e) {
   if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd') {
     playerOne.directionX = 0;
   }
-
 });
 
 window.addEventListener('keyup', function (e) {
