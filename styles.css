@@ -3,17 +3,28 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-    margin-top: 9.5rem;
-    background-color: black;
+  margin-top: 5rem;
 }
 
-
 #gameContainer {
-  position: relative;
-  background-color: blue;
   margin: 0 auto;
-  width: 1200px;
-  height: 600px;
+  width: 1700px;
+  height: 750px;
+}
 
+#gameCanvas {
+  background-color: lightpink;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#heroContainer {
+  position: absolute;
+}
+
+#antagonistContainer {
+  position: absolute;
 }
