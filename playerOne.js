@@ -45,7 +45,7 @@ class Hero {
     if (this.isJumping) {
       this.speedY += this.gravity;
       this.y += this.speedY;
-      this.sprite.style.top = this.y + 'px'
+      this.sprite.style.top = this.y + 'px';
 
       if (this.y >= 690) {
         this.y = 690;
@@ -54,6 +54,11 @@ class Hero {
       }
     }
   }
+  playerAttack() {}
 
+  receiveDamage(dmg) {
+    this.health -= dmg;
+  }
+  checkCollisions() {}
   removeHero() {}
 }

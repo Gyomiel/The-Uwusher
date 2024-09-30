@@ -13,20 +13,23 @@ class Enemy {
   }
 
   insertEnemy() {
-        this.sprite.setAttribute('class', 'enemyContainer');
-        this.sprite.style.width = this.width + 'px';
-        this.sprite.style.height = this.height + 'px';
-        this.sprite.style.top = this.y + 'px';
-        this.sprite.style.left = this.x + 'px';
-        this.sprite.style.backgroundColor = 'green';
-        canvas.appendChild(this.sprite);
+    this.sprite.setAttribute('class', 'enemyContainer');
+    this.sprite.style.width = this.width + 'px';
+    this.sprite.style.height = this.height + 'px';
+    this.sprite.style.top = this.y + 'px';
+    this.sprite.style.left = this.x + 'px';
+    this.sprite.style.backgroundColor = 'green';
+    canvas.appendChild(this.sprite);
   }
 
-  enemyMovement() {
+  enemyMovement() {}
 
-  }
+  enemyAttack() {}
 
-  removeEnemy() {
-    
+  receiveDamage(dmg) {
+    this.health -= dmg;
   }
+  checkCollisions() {}
+
+  removeEnemy() {}
 }

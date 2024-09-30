@@ -55,5 +55,12 @@ class Antagonist {
       }
     }
   }
+
+  playerAttack() {}
+  receiveDamage(dmg) {
+    this.health -= dmg;
+  }
+  checkCollisions() {}
+
   removeAntagonist() {}
 }
