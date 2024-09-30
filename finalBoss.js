@@ -1,35 +1,35 @@
-class Enemy {
-  constructor(x, y) {
+class Boss {
+  constructor() {
     this.x = x;
     this.y = y;
-    this.width = 30;
-    this.height = 30;
+    this.width = 100;
+    this.height = 100;
     this.directionX = 0;
     this.directionY = 0;
     this.speed = 1;
-    this.health = 180;
-    this.strength = 45;
+    this.health = 20;
+    this.strength = 30;
     this.sprite = document.createElement('div');
   }
 
-  insertEnemy() {
-    this.sprite.setAttribute('class', 'enemyContainer');
+  insertFinalBoss() {
+    this.sprite.setAttribute('id', 'bossContainer');
     this.sprite.style.width = this.width + 'px';
     this.sprite.style.height = this.height + 'px';
     this.sprite.style.top = this.y + 'px';
     this.sprite.style.left = this.x + 'px';
-    this.sprite.style.backgroundColor = 'green';
-    canvas.appendChild(this.sprite);
+    this.sprite.style.backgroundColor = 'yellow';
+    //canvas.appendChild(this.sprite);
   }
 
-  enemyMovement() {}
+  finalBossMovement() {}
 
-  enemyAttack() {}
+  finalBossAttack() {}
 
   receiveDamage(dmg) {
     this.health -= dmg;
   }
   checkCollisions() {}
 
-  removeEnemy() {}
+  removeFinalBoss() {}
 }
