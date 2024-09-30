@@ -11,6 +11,7 @@ class Antagonist {
     this.jumpStrength = -10;
     this.gravity = 0.5;
     this.isJumping = false;
+    this.attacking = false;
     this.health = 90;
     this.strength = 40;
     this.sprite = document.createElement('div');

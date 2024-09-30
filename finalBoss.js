@@ -7,8 +7,8 @@ class Boss {
     this.directionX = 0;
     this.directionY = 0;
     this.speed = 1;
-    this.health = 20;
-    this.strength = 30;
+    this.health = 180;
+    this.strength = 45;
     this.sprite = document.createElement('div');
   }
 

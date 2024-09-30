@@ -4,11 +4,11 @@ class Enemy {
     this.y = y;
     this.width = 30;
     this.height = 30;
-    this.directionX = 0;
-    this.directionY = 0;
     this.speed = 1;
-    this.health = 180;
-    this.strength = 45;
+    this.health = 20;
+    this.strength = 30;
+    this.attacking = false;
+    this.randomDirection = 0;
     this.sprite = document.createElement('div');
   }
 
@@ -22,7 +22,14 @@ class Enemy {
     canvas.appendChild(this.sprite);
   }
 
-  enemyMovement() {}
+  chooseRandomDirection() {
+    this.randomDirection = Math.floor(Math.random() * 2) + 1;
+  }
+
+  enemyMovement() {
+    let previousX = this.x;
+    let previousY = this.y;
+  }
 
   enemyAttack() {}
 

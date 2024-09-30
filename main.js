@@ -9,6 +9,7 @@ let playerTwo;
 let moveHeroInterval;
 let moveAntagonistInterval;
 let enemies;
+let platform;
 
 // Starting the game:
 
@@ -16,6 +17,7 @@ function startGame() {
   newHero();
   newAntagonist();
   newEnemy();
+  newPlatform();
 }
 
 // If the characters are still alive, the game goes on:
@@ -52,7 +54,11 @@ function newAntagonist() {
 function newEnemy() {
   enemies = new Enemy(500, 500);
   enemies.insertEnemy();
+}
 
+function newPlatform() {
+  platform = new Platform(200, 650, 60, 30);
+  platform.insertPlatform();
 }
 
 
