@@ -2,15 +2,21 @@
 
 const canvas = document.getElementById('gameCanvas');
 
+// Necessary variables:
+
 let playerOne;
 let playerTwo;
 let moveHeroInterval;
 let moveAntagonistInterval;
 
+// Starting the game:
+
 function startGame() {
   newHero();
   newAntagonist();
 }
+
+// If the characters are still alive, the game goes on:
 
 function stillAlive() {
   if (playerOne.health > 0 && playerTwo.health > 0) {
@@ -21,23 +27,29 @@ function stillAlive() {
   }
 }
 
+// Inserting the hero (player one):
+
 function newHero() {
   playerOne = new Hero(0, 690);
   playerOne.insertHero();
   moveHeroInterval = setInterval(function () {
     stillAlive();
-  }, 100);
+  }, 10);
 }
+
+// Inserting the antagonist (player two):
 
 function newAntagonist() {
   playerTwo = new Antagonist(1640, 690);
   playerTwo.insertAntagonist();
   moveAntagonistInterval = setInterval(function () {
     stillAlive();
-  }, 100);
+  }, 10);
 }
 
 startGame();
+
+// Game over:
 
 function gameOver() {
   clearInterval(moveHeroInterval);
@@ -45,6 +57,17 @@ function gameOver() {
   clearInterval(moveAntagonistInterval);
   playerTwo.removeAntagonist();
 }
+
+function updateTheGame() {
+  playerOne.gravityOnJump();
+  playerTwo.gravityOnJump();
+  playerOne.moveTheHeroHorizontally();
+  playerTwo.moveTheAntagonistHorizontally();
+
+  requestAnimationFrame(updateTheGame);
+}
+
+// Add event listeners for keyboard control:
 
 window.addEventListener('keydown', function (e) {
   switch (e.key.toLowerCase()) {
@@ -55,7 +78,9 @@ window.addEventListener('keydown', function (e) {
     case 'd':
       playerOne.directionX = 1;
       playerOne.moveTheHeroHorizontally();
-      console.log(playerOne)
+      break;
+    case 'w':
+      playerOne.jumping();
       break;
   }
 });
@@ -70,6 +95,9 @@ window.addEventListener('keydown', function (e) {
       playerTwo.directionX = 1;
       playerTwo.moveTheAntagonistHorizontally();
       break;
+    case 'ArrowUp':
+        playerTwo.jumping();
+        break;
   }
 });
 
@@ -84,3 +112,5 @@ window.addEventListener('keyup', function (e) {
     playerTwo.directionX = 0;
   }
 });
+
+updateTheGame();
