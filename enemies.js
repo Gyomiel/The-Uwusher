@@ -21,4 +21,12 @@ class Enemy {
         this.sprite.style.backgroundColor = 'green';
         canvas.appendChild(this.sprite);
   }
+
+  enemyMovement() {
+
+  }
+
+  removeEnemy() {
+    
+  }
 }

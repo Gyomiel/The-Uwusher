@@ -8,7 +8,7 @@ let playerOne;
 let playerTwo;
 let moveHeroInterval;
 let moveAntagonistInterval;
-let enemies = [];
+let enemies;
 
 // Starting the game:
 
