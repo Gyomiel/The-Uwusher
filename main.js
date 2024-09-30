@@ -9,6 +9,7 @@ let playerTwo;
 let moveHeroInterval;
 let moveAntagonistInterval;
 
+
 // Starting the game:
 
 function startGame() {
@@ -21,6 +22,7 @@ function startGame() {
 function stillAlive() {
   if (playerOne.health > 0 && playerTwo.health > 0) {
     playerOne.moveTheHeroHorizontally();
+    playerOne.jum
     playerTwo.moveTheAntagonistHorizontally();
   } else {
     //
@@ -105,6 +107,7 @@ window.addEventListener('keyup', function (e) {
   if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd') {
     playerOne.directionX = 0;
   }
+
 });
 
 window.addEventListener('keyup', function (e) {
