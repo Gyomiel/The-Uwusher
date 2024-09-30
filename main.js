@@ -55,6 +55,7 @@ function newEnemy() {
 
 }
 
+
 startGame();
 
 // Game over:

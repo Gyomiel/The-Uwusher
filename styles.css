@@ -30,5 +30,9 @@ body {
 }
 
 .enemyContainer {
-    position: absolute;
+  position: absolute;
+}
+
+#bossContainer {
+  position: absolute;
 }
