@@ -4,8 +4,9 @@ class Hero {
     this.y = y;
     this.width = 60;
     this.height = 60;
-    this.direction = 0;
-    this.speed = 10;
+    this.directionX = 0;
+    this.directionY = 0;
+    this.speed = 20;
     this.health = 90;
     this.strength = 40;
     this.sprite = document.createElement('div');
@@ -21,7 +22,16 @@ class Hero {
     canvas.appendChild(this.sprite);
   }
 
-  moveTheHero() {
-  
+  moveTheHeroHorizontally() {
+    let xAxis = this.x + this.speed * this.directionX;
+    console.log(xAxis)
+    if (xAxis >= 0 && xAxis <= 1700 - this.width) {
+      this.x = xAxis;
+      this.sprite.style.left = this.x + 'px';
+    }
+  }
+
+  jumping() {
+
   }
 }
