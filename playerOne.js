@@ -8,7 +8,7 @@ class Hero {
     this.directionY = 0;
     this.speed = 2;
     this.speedY = 0;
-    this.jumpStrength = -10;
+    this.jumpStrength = -20;
     this.gravity = 0.5;
     this.isJumping = false;
     this.attacking = false;
@@ -47,8 +47,11 @@ class Hero {
       this.speedY += this.gravity;
       this.y += this.speedY;
       this.sprite.style.top = this.y + "px";
+      platform.checkCollisions();
 
       if (this.y >= 690) {
+        platform.checkCollisions();
+
         this.y = 690;
         this.isJumping = false;
         this.speedY = 0;

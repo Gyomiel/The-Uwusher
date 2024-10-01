@@ -1,6 +1,6 @@
 // Canvas context through DOM:
 
-const canvas = document.getElementById('gameCanvas');
+const canvas = document.getElementById("gameCanvas");
 
 // Necessary variables:
 
@@ -61,7 +61,6 @@ function newPlatform() {
   platform.insertPlatform();
 }
 
-
 startGame();
 
 // Game over:
@@ -84,46 +83,49 @@ function updateTheGame() {
 
 // Add event listeners for keyboard control:
 
-window.addEventListener('keydown', function (e) {
+window.addEventListener("keydown", function (e) {
   switch (e.key.toLowerCase()) {
-    case 'a':
+    case "a":
       playerOne.directionX = -1;
       playerOne.moveTheHeroHorizontally();
+      platform.checkCollisions();
       break;
-    case 'd':
+    case "d":
       playerOne.directionX = 1;
       playerOne.moveTheHeroHorizontally();
+      platform.checkCollisions();
       break;
-    case 'w':
+    case "w":
       playerOne.jumping();
+      platform.checkCollisions();
       break;
   }
 });
 
-window.addEventListener('keydown', function (e) {
+window.addEventListener("keydown", function (e) {
   switch (e.key) {
-    case 'ArrowLeft':
+    case "ArrowLeft":
       playerTwo.directionX = -1;
       playerTwo.moveTheAntagonistHorizontally();
       break;
-    case 'ArrowRight':
+    case "ArrowRight":
       playerTwo.directionX = 1;
       playerTwo.moveTheAntagonistHorizontally();
       break;
-    case 'ArrowUp':
+    case "ArrowUp":
       playerTwo.jumping();
       break;
   }
 });
 
-window.addEventListener('keyup', function (e) {
-  if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd') {
+window.addEventListener("keyup", function (e) {
+  if (e.key.toLowerCase() === "a" || e.key.toLowerCase() === "d") {
     playerOne.directionX = 0;
   }
 });
 
-window.addEventListener('keyup', function (e) {
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+window.addEventListener("keyup", function (e) {
+  if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
     playerTwo.directionX = 0;
   }
 });
