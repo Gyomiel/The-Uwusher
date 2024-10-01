@@ -41,3 +41,10 @@ body {
 #antagonistContainer {
   position: absolute;
 }
+
+.power-up {
+  position: absolute;
+  background-color: yellow;
+  width: 30px;
+  height: 30px;
+}
