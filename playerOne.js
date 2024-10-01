@@ -20,11 +20,11 @@ class Hero {
 
   insertHero() {
     this.sprite.setAttribute('id', 'heroContainer');
+    this.sprite.setAttribute('class', 'yureiIdle')
     this.sprite.style.width = this.width + 'px';
     this.sprite.style.height = this.height + 'px';
     this.sprite.style.top = this.y + 'px';
     this.sprite.style.left = this.x + 'px';
-    this.sprite.style.backgroundColor = 'red';
     canvas.appendChild(this.sprite);
   }
 
@@ -81,8 +81,8 @@ class Hero {
       this.speedY += this.gravity;
       this.y += this.speedY;
       this.sprite.style.top = this.y + 'px';
-      if (this.y >= 400) {
-        this.y = 400;
+      if (this.y >= 360) {
+        this.y = 360;
         this.isJumping = false;
         this.speedY = 0;
       }

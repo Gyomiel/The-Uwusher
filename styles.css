@@ -41,3 +41,12 @@ body {
 #antagonistContainer {
   position: absolute;
 }
+
+/* Sprite animation */
+
+.yureiIdle {
+  background-image: url("/imgs/sprites/yurei/yureiIdle.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(1.5);
+}

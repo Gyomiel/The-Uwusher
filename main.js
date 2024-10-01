@@ -1,6 +1,6 @@
 // Canvas context through DOM:
 
-const canvas = document.getElementById('gameCanvas');
+const canvas = document.getElementById("gameCanvas");
 
 // Necessary variables:
 
@@ -31,7 +31,7 @@ function stillAlive() {
 // Inserting the hero (player one):
 
 function newHero() {
-  playerOne = new Hero(0, 400);
+  playerOne = new Hero(20, 360);
   playerOne.insertHero();
   moveHeroInterval = setInterval(function () {
     stillAlive();
@@ -70,60 +70,102 @@ function updateTheGame() {
 
 // Add event listeners for keyboard control:
 
-window.addEventListener('keydown', function (e) {
+window.addEventListener("keydown", function (e) {
   switch (e.key.toLowerCase()) {
-    case 'a':
+    case "a":
       playerOne.directionX = -1;
       playerOne.previousDirection = -1;
       playerOne.checkCollisions();
       playerOne.moveTheHeroHorizontally();
+      playerOne.sprite.style.backgroundImage =
+        "url('/imgs/sprites/yurei/yureiRunReverse.gif')";
       break;
-    case 'd':
+    case "d":
       playerOne.directionX = 1;
       playerOne.previousDirection = 1;
       playerOne.checkCollisions();
       playerOne.moveTheHeroHorizontally();
+      playerOne.sprite.style.backgroundImage =
+        "url('/imgs/sprites/yurei/yureiRun.gif')";
       break;
-    case 'w':
+    case "w":
       playerOne.checkCollisions();
       playerOne.jumping();
+      playerOne.sprite.style.backgroundImage =
+        playerOne.directionX === -1
+          ? "url('/imgs/sprites/yurei/yureiJumpReverse.gif')"
+          : "url('/imgs/sprites/yurei/yureiJump.gif')";
+      playerOne.sprite.style.backgroundImage =
+        playerOne.previousDirection === -1
+          ? "url('/imgs/sprites/yurei/yureiJumpReverse.gif')"
+          : "url('/imgs/sprites/yurei/yureiJump.gif')";
       break;
-    case ' ':
+    case " ":
       playerOne.playerMeleeAttack();
+      playerOne.sprite.style.backgroundImage =
+        playerOne.directionX === -1
+          ? "url('/imgs/sprites/yurei/yureiMeleeAttackReverse.gif')"
+          : "url('/imgs/sprites/yurei/yureiMeleeAttack.gif')";
+      playerOne.sprite.style.backgroundImage =
+        playerOne.previousDirection === -1
+          ? "url('/imgs/sprites/yurei/yureiMeleeAttackReverse.gif')"
+          : "url('/imgs/sprites/yurei/yureiMeleeAttack.gif')";
   }
 });
 
-window.addEventListener('keydown', function (e) {
+window.addEventListener("keydown", function (e) {
   switch (e.key) {
-    case 'ArrowLeft':
+    case "ArrowLeft":
       playerTwo.directionX = -1;
       playerTwo.previousDirection = -1;
       playerTwo.checkCollisions();
       playerTwo.moveTheAntagonistHorizontally();
       break;
-    case 'ArrowRight':
+    case "ArrowRight":
       playerTwo.directionX = 1;
       playerTwo.previousDirection = 1;
       playerTwo.checkCollisions();
       playerTwo.moveTheAntagonistHorizontally();
       break;
-    case 'ArrowUp':
+    case "ArrowUp":
       playerTwo.checkCollisions();
       playerTwo.jumping();
       break;
-    case 'ArrowDown':
+    case "ArrowDown":
       playerTwo.playerMeleeAttack();
   }
 });
 
-window.addEventListener('keyup', function (e) {
-  if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd') {
+window.addEventListener("keyup", function (e) {
+  if (e.key.toLowerCase() === "a") {
     playerOne.directionX = 0;
+    playerOne.sprite.style.backgroundImage =
+      "url('/imgs/sprites/yurei/yureiIdleReverse.gif')";
+  }
+  if (e.key.toLowerCase() === "d") {
+    playerOne.directionX = 0;
+    playerOne.sprite.style.backgroundImage =
+      "url('/imgs/sprites/yurei/yureiIdle.gif')";
+  }
+  if (e.key.toLowerCase() === "w") {
+    playerOne.directionX = 0;
+    playerOne.sprite.style.backgroundImage =
+      playerOne.previousDirection === -1
+        ? "url('/imgs/sprites/yurei/yureiIdleReverse.gif')"
+        : "url('/imgs/sprites/yurei/yureiIdle.gif')";
+  }
+
+  if (e.key === " ") {
+    playerOne.directionX = 0;
+    playerOne.sprite.style.backgroundImage =
+      playerOne.previousDirection === -1
+        ? "url('/imgs/sprites/yurei/yureiIdleReverse.gif')"
+        : "url('/imgs/sprites/yurei/yureiIdle.gif')";
   }
 });
 
-window.addEventListener('keyup', function (e) {
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+window.addEventListener("keyup", function (e) {
+  if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
     playerTwo.directionX = 0;
   }
 });
