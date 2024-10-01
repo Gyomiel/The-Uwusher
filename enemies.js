@@ -38,5 +38,8 @@ class Enemy {
   }
   checkCollisions() {}
 
-  removeEnemy() {}
+  removeEnemy() {
+    canvas.removeChild(this.sprite);
+    clearInterval(enemiesSpawningInterval);
+  }
 }

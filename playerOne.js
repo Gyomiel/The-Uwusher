@@ -14,24 +14,29 @@ class Hero {
     this.attacking = false;
     this.health = 90;
     this.strength = 40;
-    this.sprite = document.createElement("div");
+    this.sprite = document.createElement('div');
   }
 
   insertHero() {
-    this.sprite.setAttribute("id", "heroContainer");
-    this.sprite.style.width = this.width + "px";
-    this.sprite.style.height = this.height + "px";
-    this.sprite.style.top = this.y + "px";
-    this.sprite.style.left = this.x + "px";
-    this.sprite.style.backgroundColor = "red";
+    this.sprite.setAttribute('id', 'heroContainer');
+    this.sprite.style.width = this.width + 'px';
+    this.sprite.style.height = this.height + 'px';
+    this.sprite.style.top = this.y + 'px';
+    this.sprite.style.left = this.x + 'px';
+    this.sprite.style.backgroundColor = 'red';
     canvas.appendChild(this.sprite);
+  }
+
+  removeHero() {
+    canvas.removeChild(this.sprite);
+    clearInterval(moveHeroInterval);
   }
 
   moveTheHeroHorizontally() {
     let xAxis = this.x + this.speed * this.directionX;
     if (xAxis >= 0 && xAxis <= 1700 - this.width) {
       this.x = xAxis;
-      this.sprite.style.left = this.x + "px";
+      this.sprite.style.left = this.x + 'px';
     }
   }
 
@@ -46,7 +51,7 @@ class Hero {
     if (this.isJumping) {
       this.speedY += this.gravity;
       this.y += this.speedY;
-      this.sprite.style.top = this.y + "px";
+      this.sprite.style.top = this.y + 'px';
       platform.checkCollisions();
 
       if (this.y >= 690) {
@@ -64,5 +69,4 @@ class Hero {
     this.health -= dmg;
   }
   checkCollisions() {}
-  removeHero() {}
 }

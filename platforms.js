@@ -17,6 +17,7 @@ class Platform {
     canvas.appendChild(this.sprite);
   }
 
+
   checkCollisions() {
     let platformX = this.x;
     let playerOneX = playerOne.x;
@@ -44,7 +45,7 @@ class Platform {
         playerOne.y = platformY;
       }
 
-      this.speed = 1;
+      this.speed = 0;
       return true;
     }
     this.speed;

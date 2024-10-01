@@ -8,7 +8,7 @@ class Antagonist {
     this.directionY = 0;
     this.speed = 2;
     this.speedY = 0;
-    this.jumpStrength = -10;
+    this.jumpStrength = -20;
     this.gravity = 0.5;
     this.isJumping = false;
     this.attacking = false;
@@ -25,6 +25,11 @@ class Antagonist {
     this.sprite.style.left = this.x + 'px';
     this.sprite.style.backgroundColor = 'blue';
     canvas.appendChild(this.sprite);
+  }
+
+  removeAntagonist() {
+    canvas.removeChild(this.sprite);
+    clearInterval(moveAntagonistInterval);
   }
 
   moveTheAntagonistHorizontally() {
@@ -62,6 +67,4 @@ class Antagonist {
     this.health -= dmg;
   }
   checkCollisions() {}
-
-  removeAntagonist() {}
 }

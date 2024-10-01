@@ -1,14 +1,19 @@
 // Canvas context through DOM:
 
-const canvas = document.getElementById("gameCanvas");
+const canvas = document.getElementById('gameCanvas');
 
 // Necessary variables:
 
 let playerOne;
-let playerTwo;
 let moveHeroInterval;
+
+let playerTwo;
 let moveAntagonistInterval;
-let enemies;
+
+let enemy;
+let enemies = [];
+let enemiesSpawningInterval;
+
 let platform;
 
 // Starting the game:
@@ -27,7 +32,7 @@ function stillAlive() {
     playerOne.moveTheHeroHorizontally();
     playerTwo.moveTheAntagonistHorizontally();
   } else {
-    //
+    gameOver();
   }
 }
 
@@ -52,8 +57,11 @@ function newAntagonist() {
 }
 
 function newEnemy() {
-  enemies = new Enemy(500, 500);
-  enemies.insertEnemy();
+  enemiesSpawningInterval = setInterval(function () {
+    enemy = new Enemy(0, 0);
+    enemy.insertEnemy();
+    enemies.push(enemy)
+  }, 5000);
 }
 
 function newPlatform() {
@@ -70,6 +78,9 @@ function gameOver() {
   playerOne.removeHero();
   clearInterval(moveAntagonistInterval);
   playerTwo.removeAntagonist();
+  enemies.forEach(function(enemy) {
+    enemy.removeEnemy();
+  })
 }
 
 function updateTheGame() {
@@ -83,49 +94,49 @@ function updateTheGame() {
 
 // Add event listeners for keyboard control:
 
-window.addEventListener("keydown", function (e) {
+window.addEventListener('keydown', function (e) {
   switch (e.key.toLowerCase()) {
-    case "a":
+    case 'a':
       playerOne.directionX = -1;
       playerOne.moveTheHeroHorizontally();
       platform.checkCollisions();
       break;
-    case "d":
+    case 'd':
       playerOne.directionX = 1;
       playerOne.moveTheHeroHorizontally();
       platform.checkCollisions();
       break;
-    case "w":
+    case 'w':
       playerOne.jumping();
       platform.checkCollisions();
       break;
   }
 });
 
-window.addEventListener("keydown", function (e) {
+window.addEventListener('keydown', function (e) {
   switch (e.key) {
-    case "ArrowLeft":
+    case 'ArrowLeft':
       playerTwo.directionX = -1;
       playerTwo.moveTheAntagonistHorizontally();
       break;
-    case "ArrowRight":
+    case 'ArrowRight':
       playerTwo.directionX = 1;
       playerTwo.moveTheAntagonistHorizontally();
       break;
-    case "ArrowUp":
+    case 'ArrowUp':
       playerTwo.jumping();
       break;
   }
 });
 
-window.addEventListener("keyup", function (e) {
-  if (e.key.toLowerCase() === "a" || e.key.toLowerCase() === "d") {
+window.addEventListener('keyup', function (e) {
+  if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd') {
     playerOne.directionX = 0;
   }
 });
 
-window.addEventListener("keyup", function (e) {
-  if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+window.addEventListener('keyup', function (e) {
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
     playerTwo.directionX = 0;
   }
 });
