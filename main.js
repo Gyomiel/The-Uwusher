@@ -6,7 +6,7 @@ const canvas = document.getElementById('gameCanvas');
 
 let playerOne;
 let moveHeroInterval;
-
+let start = document.getElementById('btn-start')
 let playerTwo;
 let moveAntagonistInterval;
 
@@ -15,6 +15,7 @@ let moveAntagonistInterval;
 function startGame() {
   newHero();
   newAntagonist();
+  updateTheGame();
 }
 
 // If the characters are still alive, the game goes on:
@@ -48,7 +49,7 @@ function newAntagonist() {
   }, 10);
 }
 
-startGame();
+
 
 // Game over:
 
@@ -114,4 +115,6 @@ window.addEventListener('keyup', function (e) {
   }
 });
 
-updateTheGame();
+start.addEventListener('click', function(event){
+  startGame()
+})
