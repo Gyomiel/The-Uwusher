@@ -6,6 +6,7 @@ class Antagonist {
     this.height = 150;
     this.directionX = 0;
     this.directionY = 0;
+    this.previousDirection = 0;
     this.speedX = 2;
     this.speedY = 0;
     this.jumpStrength = -22;
@@ -82,10 +83,35 @@ class Antagonist {
     }
   }
 
-  playerAttack() {}
+  playerMeleeAttack() {
+    let previousWidth = this.width;
+    let previousX = this.x;
+
+    if (this.previousDirection === 1) {
+      this.width += this.width / 2;
+      if (this.checkCollisions()) {
+        playerOne.health -= this.strength;
+        console.log('AttackingP2');
+
+      }
+    } else {
+      this.width += this.width / 2;
+      this.x = this.x - this.width / 2;
+      if (this.checkCollisions()) {
+        playerOne.health -= this.strength;
+        console.log('AttackingP2');
+
+      }
+    }
+
+    this.width = previousWidth;
+    this.x = previousX;
+  }
+
   receiveDamage(dmg) {
     this.health -= dmg;
   }
+
   checkCollisions() {
     if (
       playerOne.x < playerTwo.x + playerTwo.width &&

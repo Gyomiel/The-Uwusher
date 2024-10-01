@@ -6,6 +6,7 @@ class Hero {
     this.height = 150;
     this.directionX = 0;
     this.directionY = 0;
+    this.previousDirection = 0;
     this.speedX = 2;
     this.speedY = 0;
     this.jumpStrength = -22;
@@ -41,9 +42,12 @@ class Hero {
     }
 
     if (xAxis >= 0 && xAxis <= 1700 - this.width && this.checkCollisions()) {
-      if (xAxis + this.bounceBack() >= 0 && xAxis + this.bounceBack() <= 1700 - this.width) {
+      if (
+        xAxis + this.bounceBack() >= 0 &&
+        xAxis + this.bounceBack() <= 1700 - this.width
+      ) {
         console.log(xAxis + this.bounceBack());
-        
+
         this.x = xAxis + this.bounceBack();
         this.sprite.style.left = this.x + 'px';
       }
@@ -84,7 +88,29 @@ class Hero {
       }
     }
   }
-  playerAttack() {}
+
+  playerMeleeAttack() {
+    let previousWidth = this.width;
+    let previousX = this.x;
+
+    if (this.previousDirection === 1) {
+      this.width += this.width / 2;
+      if (this.checkCollisions()) {
+        playerTwo.health -= this.strength;
+        console.log('AttackingP1');
+      }
+    } else {
+      this.width += this.width / 2;
+      this.x = this.x - this.width / 2;
+      if (this.checkCollisions()) {
+        playerTwo.health -= this.strength;
+        console.log('AttackingP1');
+      }
+    }
+
+    this.width = previousWidth;
+    this.x = previousX;
+  }
 
   receiveDamage(dmg) {
     this.health -= dmg;
