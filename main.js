@@ -74,13 +74,16 @@ window.addEventListener('keydown', function (e) {
   switch (e.key.toLowerCase()) {
     case 'a':
       playerOne.directionX = -1;
+      playerOne.checkCollisions();
       playerOne.moveTheHeroHorizontally();
       break;
     case 'd':
       playerOne.directionX = 1;
+      playerOne.checkCollisions();
       playerOne.moveTheHeroHorizontally();
       break;
     case 'w':
+      playerOne.checkCollisions();
       playerOne.jumping();
       break;
   }
@@ -90,13 +93,16 @@ window.addEventListener('keydown', function (e) {
   switch (e.key) {
     case 'ArrowLeft':
       playerTwo.directionX = -1;
+      playerTwo.checkCollisions();
       playerTwo.moveTheAntagonistHorizontally();
       break;
     case 'ArrowRight':
       playerTwo.directionX = 1;
+      playerTwo.checkCollisions();
       playerTwo.moveTheAntagonistHorizontally();
       break;
     case 'ArrowUp':
+      playerTwo.checkCollisions();
       playerTwo.jumping();
       break;
   }

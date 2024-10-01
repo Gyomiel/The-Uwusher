@@ -8,8 +8,8 @@ class Antagonist {
     this.directionY = 0;
     this.speedX = 2;
     this.speedY = 0;
-    this.jumpStrength = -20;
-    this.gravity = 0.5;
+    this.jumpStrength = -22;
+    this.gravity = 1;
     this.isJumping = false;
     this.attacking = false;
     this.health = 100;
@@ -34,10 +34,31 @@ class Antagonist {
 
   moveTheAntagonistHorizontally() {
     let xAxis = this.x + this.speedX * this.directionX;
-
-    if (xAxis >= 0 && xAxis <= 1700 - this.width) {
+    this.checkCollisions();
+    if (xAxis >= 0 && xAxis <= 1700 - this.width && !this.checkCollisions()) {
       this.x = xAxis;
       this.sprite.style.left = this.x + 'px';
+    }
+
+    if (xAxis >= 0 && xAxis <= 1700 - this.width && this.checkCollisions()) {
+      if (
+        xAxis + this.bounceBack() >= 0 &&
+        xAxis + this.bounceBack() <= 1700 - this.width
+      ) {
+        this.x = xAxis + this.bounceBack();
+        this.sprite.style.left = this.x + 'px';
+      }
+    }
+  }
+
+  bounceBack() {
+    if (
+      playerTwo.directionX === -1 ||
+      (playerOne.directionX === 1 && playerTwo.directionX === 0)
+    ) {
+      return 10;
+    } else {
+      return -10;
     }
   }
 
@@ -49,11 +70,10 @@ class Antagonist {
   }
 
   gravityOnJump() {
-    if (this.isJumping) {
+    if (this.isJumping && !this.checkCollisions()) {
       this.speedY += this.gravity;
       this.y += this.speedY;
       this.sprite.style.top = this.y + 'px';
-
       if (this.y >= 400) {
         this.y = 400;
         this.isJumping = false;
@@ -66,5 +86,16 @@ class Antagonist {
   receiveDamage(dmg) {
     this.health -= dmg;
   }
-  checkCollisions() {}
+  checkCollisions() {
+    if (
+      playerOne.x < playerTwo.x + playerTwo.width &&
+      playerOne.y < playerTwo.y + playerTwo.height &&
+      playerOne.x + playerOne.width > playerTwo.x &&
+      playerOne.y + playerOne.height > playerTwo.y
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
