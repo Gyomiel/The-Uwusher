@@ -10,19 +10,11 @@ let moveHeroInterval;
 let playerTwo;
 let moveAntagonistInterval;
 
-let enemy;
-let enemies = [];
-let enemiesSpawningInterval;
-
-let platform;
-
 // Starting the game:
 
 function startGame() {
   newHero();
   newAntagonist();
-  newEnemy();
-  newPlatform();
 }
 
 // If the characters are still alive, the game goes on:
@@ -39,7 +31,7 @@ function stillAlive() {
 // Inserting the hero (player one):
 
 function newHero() {
-  playerOne = new Hero(0, 690);
+  playerOne = new Hero(0, 400);
   playerOne.insertHero();
   moveHeroInterval = setInterval(function () {
     stillAlive();
@@ -49,24 +41,11 @@ function newHero() {
 // Inserting the antagonist (player two):
 
 function newAntagonist() {
-  playerTwo = new Antagonist(1640, 690);
+  playerTwo = new Antagonist(1620, 400);
   playerTwo.insertAntagonist();
   moveAntagonistInterval = setInterval(function () {
     stillAlive();
   }, 10);
-}
-
-function newEnemy() {
-  enemiesSpawningInterval = setInterval(function () {
-    enemy = new Enemy(0, 0);
-    enemy.insertEnemy();
-    enemies.push(enemy)
-  }, 5000);
-}
-
-function newPlatform() {
-  platform = new Platform(200, 650, 60, 30);
-  platform.insertPlatform();
 }
 
 startGame();
@@ -78,9 +57,6 @@ function gameOver() {
   playerOne.removeHero();
   clearInterval(moveAntagonistInterval);
   playerTwo.removeAntagonist();
-  enemies.forEach(function(enemy) {
-    enemy.removeEnemy();
-  })
 }
 
 function updateTheGame() {
@@ -99,16 +75,13 @@ window.addEventListener('keydown', function (e) {
     case 'a':
       playerOne.directionX = -1;
       playerOne.moveTheHeroHorizontally();
-      platform.checkCollisions();
       break;
     case 'd':
       playerOne.directionX = 1;
       playerOne.moveTheHeroHorizontally();
-      platform.checkCollisions();
       break;
     case 'w':
       playerOne.jumping();
-      platform.checkCollisions();
       break;
   }
 });
