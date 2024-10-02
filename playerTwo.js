@@ -13,8 +13,8 @@ class Antagonist {
     this.gravity = 1;
     this.isJumping = false;
     this.attacking = false;
-    this.health = 40;
-    this.strength = 20;
+    this.health = 600;
+    this.strength = 100;
     this.sprite = document.createElement('div');
   }
 
@@ -107,6 +107,8 @@ class Antagonist {
   }
 
   receiveDamage(dmg) {
+    console.log(healthBarP2);
+    healthBarP2.value -= dmg;
     this.health -= dmg;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
@@ -126,7 +128,6 @@ class Antagonist {
         playerTwo.x = 0;
         playerTwo.y = 0;
       }, 900);
-
     } else {
       setTimeout(function () {
         playerTwo.sprite.style.backgroundImage =

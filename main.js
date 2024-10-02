@@ -1,6 +1,8 @@
 // Canvas context through DOM:
 
-const canvas = document.getElementById("gameCanvas");
+const canvas = document.getElementById('gameCanvas');
+const healthBarP1 = document.getElementById('playerOneHB');
+const healthBarP2 = document.getElementById('playerTwoHB');
 
 // Necessary variables:
 
@@ -70,9 +72,9 @@ function updateTheGame() {
 
 // Add event listeners for keyboard control:
 
-window.addEventListener("keydown", function (e) {
+window.addEventListener('keydown', function (e) {
   switch (e.key.toLowerCase()) {
-    case "a":
+    case 'a':
       playerOne.directionX = -1;
       playerOne.previousDirection = -1;
       playerOne.checkCollisions();
@@ -80,7 +82,7 @@ window.addEventListener("keydown", function (e) {
       playerOne.sprite.style.backgroundImage =
         "url('/imgs/sprites/yurei/yureiRunReverse.gif')";
       break;
-    case "d":
+    case 'd':
       playerOne.directionX = 1;
       playerOne.previousDirection = 1;
       playerOne.checkCollisions();
@@ -88,7 +90,7 @@ window.addEventListener("keydown", function (e) {
       playerOne.sprite.style.backgroundImage =
         "url('/imgs/sprites/yurei/yureiRun.gif')";
       break;
-    case "w":
+    case 'w':
       playerOne.checkCollisions();
       playerOne.jumping();
       playerOne.sprite.style.backgroundImage =
@@ -100,7 +102,7 @@ window.addEventListener("keydown", function (e) {
           ? "url('/imgs/sprites/yurei/yureiJumpReverse.gif')"
           : "url('/imgs/sprites/yurei/yureiJump.gif')";
       break;
-    case " ":
+    case ' ':
       playerOne.playerMeleeAttack();
       playerOne.sprite.style.backgroundImage =
         playerOne.directionX === -1
@@ -113,9 +115,9 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-window.addEventListener("keydown", function (e) {
+window.addEventListener('keydown', function (e) {
   switch (e.key) {
-    case "ArrowLeft":
+    case 'ArrowLeft':
       playerTwo.directionX = -1;
       playerTwo.previousDirection = -1;
       playerTwo.checkCollisions();
@@ -123,7 +125,7 @@ window.addEventListener("keydown", function (e) {
       playerTwo.sprite.style.backgroundImage =
         "url('imgs/sprites/onre/onreRunReverse.gif')";
       break;
-    case "ArrowRight":
+    case 'ArrowRight':
       playerTwo.directionX = 1;
       playerTwo.previousDirection = 1;
       playerTwo.checkCollisions();
@@ -131,7 +133,7 @@ window.addEventListener("keydown", function (e) {
       playerTwo.sprite.style.backgroundImage =
         "url('imgs/sprites/onre/onreRun.gif')";
       break;
-    case "ArrowUp":
+    case 'ArrowUp':
       playerTwo.checkCollisions();
       playerTwo.jumping();
       playerTwo.sprite.style.backgroundImage =
@@ -143,7 +145,7 @@ window.addEventListener("keydown", function (e) {
           ? "url('/imgs/sprites/onre/onreJumpReverse.gif')"
           : "url('/imgs/sprites/onre/onreJump.gif')";
       break;
-    case "ArrowDown":
+    case 'ArrowDown':
       playerTwo.playerMeleeAttack();
       playerTwo.sprite.style.backgroundImage =
         playerTwo.directionX === -1
@@ -156,18 +158,18 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-window.addEventListener("keyup", function (e) {
-  if (e.key.toLowerCase() === "a") {
+window.addEventListener('keyup', function (e) {
+  if (e.key.toLowerCase() === 'a') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       "url('/imgs/sprites/yurei/yureiIdleReverse.gif')";
   }
-  if (e.key.toLowerCase() === "d") {
+  if (e.key.toLowerCase() === 'd') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       "url('/imgs/sprites/yurei/yureiIdle.gif')";
   }
-  if (e.key.toLowerCase() === "w") {
+  if (e.key.toLowerCase() === 'w') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
@@ -175,7 +177,7 @@ window.addEventListener("keyup", function (e) {
         : "url('/imgs/sprites/yurei/yureiIdle.gif')";
   }
 
-  if (e.key === " ") {
+  if (e.key === ' ') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
@@ -184,19 +186,19 @@ window.addEventListener("keyup", function (e) {
   }
 });
 
-window.addEventListener("keyup", function (e) {
-  if (e.key === "ArrowLeft") {
+window.addEventListener('keyup', function (e) {
+  if (e.key === 'ArrowLeft') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       "url('/imgs/sprites/onre/onreIdleReverse.gif')";
   }
-  if (e.key === "ArrowRight") {
+  if (e.key === 'ArrowRight') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       "url('/imgs/sprites/onre/onreIdle.gif')";
   }
 
-  if (e.key === "ArrowUp") {
+  if (e.key === 'ArrowUp') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
@@ -204,7 +206,7 @@ window.addEventListener("keyup", function (e) {
         : "url('/imgs/sprites/onre/onreIdle.gif')";
   }
 
-  if (e.key === "ArrowDown") {
+  if (e.key === 'ArrowDown') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1

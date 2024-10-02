@@ -13,8 +13,8 @@ class Hero {
     this.gravity = 1;
     this.isJumping = false;
     this.attacking = false;
-    this.health = 40;
-    this.strength = 20;
+    this.health = 600;
+    this.strength = 100;
     this.sprite = document.createElement('div');
   }
 
@@ -46,7 +46,6 @@ class Hero {
         xAxis + this.bounceBack() >= 0 &&
         xAxis + this.bounceBack() <= 1700 - this.width
       ) {
-        console.log(xAxis + this.bounceBack());
 
         this.x = xAxis + this.bounceBack();
         this.sprite.style.left = this.x + 'px';
@@ -64,10 +63,6 @@ class Hero {
       return 10;
     }
   }
-
-  /*   healthBar() {
-    let healthBar = 
-  } */
 
   jumping() {
     if (!this.isJumping) {
@@ -111,6 +106,7 @@ class Hero {
   }
 
   receiveDamage(dmg) {
+    healthBarP1.value -= dmg;
     this.health -= dmg;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1

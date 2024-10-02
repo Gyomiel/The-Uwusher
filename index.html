@@ -12,7 +12,19 @@
   <div id="gameContainer">
     <img src="/imgs/overlay/overlay.gif" id="overlayGif" />
 
-    <div id="gameCanvas"></div>
+    <div id="gameCanvas">
+      <div id="healthBars">
+        <div id="firstPlayerHB">
+          <progress id="playerOneHB" value="600" max="600"></progress>
+          <h3 id="playerOneName">Yurei</h3>
+        </div>
+        <div id="secondPlayerHB">
+          <progress id="playerTwoHB" value="600" max="600"></progress>
+          <h3 id="playerTwoName">Onre</h3>
+        </div>
+
+      </div>
+    </div>
     <div class="yureiIdle"></div>
   </div>
   <script src="playerOne.js"></script>
