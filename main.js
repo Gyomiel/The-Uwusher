@@ -1,6 +1,5 @@
 // Canvas context through DOM:
 
-
 const canvas = document.getElementById('gameCanvas');
 const healthBarP1 = document.getElementById('playerOneHB');
 const healthBarP2 = document.getElementById('playerTwoHB');
@@ -10,18 +9,19 @@ const healthBarP2 = document.getElementById('playerTwoHB');
 let playerOne;
 let moveHeroInterval;
 let startButton = document.getElementById('btn-start');
-let restartButton = document.getElementById('btn-restart')
+let restartButton = document.getElementById('btn-restart');
 let playerTwo;
 let moveAntagonistInterval;
 let powerUp;
+
 let startScreen = document.getElementById('start')
 let restartScreen = document.getElementById('restart')
 let healthRecovery;
 
+
 // Starting the game:
 
 function startGame() {
-
   newHero();
   newAntagonist();
   setInterval(function () {
@@ -30,7 +30,6 @@ function startGame() {
 
   updateTheGame();
 
-  console.log(powerUp)
 }
 
 // If the characters are still alive, the game goes on:
@@ -76,6 +75,7 @@ function spawnPowerUp() {
     else {
       healthRecovery = new HealthRecovery(x)
     }
+
     setTimeout(function () {
       if (powerUp) {
         powerUp.sprite.style.display = 'none';
@@ -87,14 +87,10 @@ function spawnPowerUp() {
       }
     }, 5000);
   }
-
 }
 
 
-
-
 function updatePowerUps() {
-
   if (powerUp) {
     powerUp.fall(2);
     if (powerUp.y > 750) {
@@ -102,7 +98,6 @@ function updatePowerUps() {
       powerUp = null;
     }
     else {
-
       powerUp.checkCollisions();
     }
   }
@@ -152,7 +147,6 @@ function updateHealthRecovery() {
 
   }
     
-
 }*/
 
 // Game over:
@@ -161,9 +155,8 @@ function gameOver() {
   clearInterval(moveHeroInterval);
   playerOne.checkingIfTheyDie();
   clearInterval(moveAntagonistInterval);
-
-  restartScreen.style.display = 'block'
   playerTwo.checkingIfTheyDie();
+  restartScreen.style.display = 'block';
 }
 
 function updateTheGame() {
@@ -177,20 +170,15 @@ function updateTheGame() {
 }
 
 function restartGame() {
-
   canvas.innerHTML = '';
 
   playerOne = null;
   playerTwo = null;
   powerUp = null;
 
-
   clearInterval(moveHeroInterval);
   clearInterval(moveAntagonistInterval);
-
-
 }
-
 
 
 // Add event listeners for keyboard control:
@@ -235,6 +223,10 @@ window.addEventListener('keydown', function (e) {
         playerOne.previousDirection === -1
           ? "url('/imgs/sprites/yurei/yureiMeleeAttackReverse.gif')"
           : "url('/imgs/sprites/yurei/yureiMeleeAttack.gif')";
+      break;
+    case 'f':
+      playerOne.playerDistanceAttack();
+      break;
   }
 });
 
@@ -339,6 +331,7 @@ window.addEventListener('keyup', function (e) {
 });
 
 startButton.addEventListener('click', function (event) {
+
   startGame()
   canvas.style.display = 'block'
   startScreen.style.display = 'none'
@@ -351,5 +344,3 @@ restartButton.addEventListener('click', function (event) {
   startScreen.style.display = 'none'
 
 })
-
-

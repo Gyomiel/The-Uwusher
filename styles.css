@@ -6,6 +6,26 @@
   box-sizing: border-box;
 }
 
+.creepster-regular {
+  font-family: "Creepster", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@keyframes pulse {
+  0% {
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8), 0 0 10px #fdfcff, 0 0 20px #fdfcff;
+    }
+  
+    50% {
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 15px #fdfcff, 0 0 30px #fdfcff;
+    }
+  
+    100% {
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8), 0 0 10px #fdfcff, 0 0 20px #fdfcff;
+    }
+}
+
 body {
   margin-top: 5rem;
 }
@@ -17,7 +37,7 @@ body {
 }
 
 #gameCanvas {
-  background-image: url('/imgs/map/horrorBG.png');
+  background-image: url('./imgs/map/horrorBG.png');
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -25,17 +45,15 @@ body {
   height: 100%;
   image-rendering: pixelated;
   z-index: -1;
-  display: none;
 }
 
 #overlayGif {
   position: absolute;
   width: 1700px;
   height: 750px;
-  opacity: 45%;
+  opacity: 30%;
   pointer-events: none;
   z-index: 2;
-  display: none;
 }
 
 #heroContainer {
@@ -46,6 +64,94 @@ body {
   position: absolute;
 }
 
+/*Style the menu of character selection*/
+
+section {
+  margin-bottom: 10px;
+  height: 750px;
+  background-image: url(./imgs/map/imgPrincipalCastillo.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: none;
+}
+
+.primerito {
+  height: 745px;
+}
+
+.segundito {
+  padding: 10px;
+  height: 740px;
+}
+
+h2 {
+  text-align: center;
+  margin: 30px 500px;
+  padding: 10px;
+  font-family: 'Creepster', cursive;
+    font-size: 64px;
+    color: black;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+      text-align: center;
+      letter-spacing: 2px;
+      animation: pulse 2s infinite;
+}
+
+.tercerito {
+  margin-right: 10px;
+  padding: 10px;
+  height: 600px;
+}
+
+#characterSelection {
+  height: 400px;
+  padding: 10px;
+  height: 100%;
+
+}
+
+#selectCharacter1 {
+  display: inline-block;
+  width: 30%;
+  height: 95%;
+  margin: 10px 10px 10px 150px;
+  border-radius: 10px;
+  background-image: url('./imgs/characters/YureiChibi.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: box-shadow 1s ease-in-out;
+}
+
+#selectCharacter2 {
+  display: inline-block;
+  width: 30%;
+  height: 95%;
+  margin: 10px 10px 10px 400px;;
+  border-radius: 10px;
+  background-image: url('./imgs/characters/OnreChibi.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  transition: box-shadow 1s ease-in-out;
+  
+}
+
+/*hover of character selection*/
+
+#selectCharacter1:hover {
+  border-color: white;
+  transform: scale(1.1);
+  transition: border-color 1s ease, transform 1s ease;
+  /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  animation: pulse 3s infinite;*/
+}
+
+#selectCharacter2:hover {
+  border-color: white;
+  transform: scale(1.1);
+  transition: border-color 1s ease, transform 1s ease;
+  /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  animation: pulse 3s infinite;*/
+}
 
 .power-up {
   position: absolute;
@@ -54,6 +160,7 @@ body {
   height: 30px;
 }
 
+
 .healthRecovery {
   position: absolute;
   background-color: green;
@@ -61,14 +168,16 @@ body {
   height: 30px;
 }
 
-#start{
+
+#start {
   width: 1700px;
   height: 750px;
-  background-image: url('/imgs/castillo.webp')  ;
+  background-image: url('./imgs/castillo.webp')  ;
   margin: 0 auto;
   position: relative;
   background-size: 1700px, 750px;
   background-repeat: no-repeat;
+  display: block;
 }
 
 #restart{
@@ -82,44 +191,32 @@ body {
 
 #btn-start {
   width: 200px;
- 
   padding: 15px;
   position: absolute;
-  
   top: 50%;
- 
   left: 50%;
-  
   transform: translate(-50%, -50%);
-  
 }
 
 #btn-restart {
   width: 200px;
- 
   padding: 15px;
   position: absolute;
-  
   top: 50%;
- 
   left: 50%;
-  
   transform: translate(-50%, -50%);
-
-}
-  
 
 /* Sprite animations */
 
 .yureiIdle {
-  background-image: url('/imgs/sprites/yurei/yureiIdle.gif');
+  background-image: url('./imgs/sprites/yurei/yureiIdle.gif');
   background-repeat: no-repeat;
   background-size: cover;
   transform: scale(1.5);
 }
 
 .onreIdle {
-  background-image: url('/imgs/sprites/onre/onreIdle.gif');
+  background-image: url('./imgs/sprites/onre/onreIdle.gif');
   background-repeat: no-repeat;
   background-size: cover;
   transform: scale(1.5);
@@ -132,6 +229,9 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding-top: 2.5rem;
 }
 
 #firstPlayerHB {
@@ -143,12 +243,13 @@ body {
 
 #secondPlayerHB {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
 #firstPlayerHB span {
+
   color: white;
   font-family: 'Pixelify Sans', sans-serif;
   font-size: 34px;
@@ -175,7 +276,9 @@ progress[value] {
   margin: 0 10px;
   border: none;
   border-radius: 5px;
-  background: var(--background);
+  background: var(--background);.barAndChara1 span {
+  margin-left: 11px;
+}
 }
 
 progress[value]::-webkit-progress-bar {
@@ -193,7 +296,7 @@ progress[value]::-moz-progress-bar {
   background: var(--color);
 }
 
-.healthHeart {
+.healthHeart1 {
   width: 80px;
   display: flex;
   flex-direction: row;
@@ -201,10 +304,38 @@ progress[value]::-moz-progress-bar {
   padding: 0;
 }
 
-.barAndChara {
+.healthHeart2 {
+  width: 80px;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+}
+
+.barAndChara1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin-left: -20px;
+}
 
+.barAndChara1 span {
+  margin-left: 11px;
+}
+
+.barAndChara2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin-right: -20px;
+}
+
+.barAndChara2 span {
+  margin-right: 11px;
+}
+
+.spellCast {
+  position: absolute;
 }

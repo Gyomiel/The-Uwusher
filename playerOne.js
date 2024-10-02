@@ -46,7 +46,6 @@ class Hero {
         xAxis + this.bounceBack() >= 0 &&
         xAxis + this.bounceBack() <= 1700 - this.width
       ) {
-
         this.x = xAxis + this.bounceBack();
         this.sprite.style.left = this.x + 'px';
       }
@@ -105,13 +104,19 @@ class Hero {
     this.x = previousX;
   }
 
+  playerDistanceAttack() {
+    let spell = new Spell(playerOne);
+    console.log(spell);
+    spell.insertSpell();
+  }
+
   receiveDamage(dmg) {
     healthBarP1.value -= dmg;
     this.health -= dmg;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
-        ? "url('/imgs/sprites/yurei/yureiHurtReverse.gif')"
-        : "url('/imgs/sprites/yurei/yureiHurt.gif')";
+        ? "url('./imgs/sprites/yurei/yureiHurtReverse.gif')"
+        : "url('./imgs/sprites/yurei/yureiHurt.gif')";
     this.checkingIfTheyDie();
   }
 
@@ -119,21 +124,19 @@ class Hero {
     if (this.health <= 0) {
       playerOne.sprite.style.backgroundImage =
         playerOne.previousDirection === -1
-          ? "url('/imgs/sprites/yurei/yureiDeadReverse.gif')"
-          : "url('/imgs/sprites/yurei/yureiDead.gif')";
+          ? "url('./imgs/sprites/yurei/yureiDeadReverse.gif')"
+          : "url('./imgs/sprites/yurei/yureiDead.gif')";
       setTimeout(function () {
         playerOne.removeHero();
         playerOne.x = 0;
         playerOne.y = 0;
       }, 900);
-
-      console.log('AAAAAAAAAA');
     } else {
       setTimeout(function () {
         playerOne.sprite.style.backgroundImage =
           playerOne.previousDirection === -1
-            ? "url('/imgs/sprites/yurei/yureiIdleReverse.gif')"
-            : "url('/imgs/sprites/yurei/yureiIdle.gif')";
+            ? "url('./imgs/sprites/yurei/yureiIdleReverse.gif')"
+            : "url('./imgs/sprites/yurei/yureiIdle.gif')";
       }, 1000);
     }
   }

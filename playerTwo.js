@@ -26,7 +26,7 @@ class Antagonist {
     this.sprite.style.top = this.y + 'px';
     this.sprite.style.left = this.x + 'px';
     this.sprite.style.backgroundImage =
-      "url('/imgs/sprites/onre/onreIdleReverse.gif')";
+      "url('./imgs/sprites/onre/onreIdleReverse.gif')";
     canvas.appendChild(this.sprite);
   }
 
@@ -112,8 +112,8 @@ class Antagonist {
     this.health -= dmg;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
-        ? "url('/imgs/sprites/onre/onreHurtReverse.gif')"
-        : "url('/imgs/sprites/onre/onreHurt.gif')";
+        ? "url('./imgs/sprites/onre/onreHurtReverse.gif')"
+        : "url('./imgs/sprites/onre/onreHurt.gif')";
     this.checkingIfTheyDie();
   }
 
@@ -121,8 +121,8 @@ class Antagonist {
     if (this.health <= 0) {
       playerTwo.sprite.style.backgroundImage =
         playerTwo.previousDirection === -1
-          ? "url('/imgs/sprites/onre/onreDeadReverse.gif')"
-          : "url('/imgs/sprites/onre/onreDead.gif')";
+          ? "url('./imgs/sprites/onre/onreDeadReverse.gif')"
+          : "url('./imgs/sprites/onre/onreDead.gif')";
       setTimeout(function () {
         playerTwo.removeAntagonist();
         playerTwo.x = 0;
@@ -132,8 +132,8 @@ class Antagonist {
       setTimeout(function () {
         playerTwo.sprite.style.backgroundImage =
           playerTwo.previousDirection === -1
-            ? "url('/imgs/sprites/onre/onreIdleReverse.gif')"
-            : "url('/imgs/sprites/onre/onreIdle.gif')";
+            ? "url('./imgs/sprites/onre/onreIdleReverse.gif')"
+            : "url('./imgs/sprites/onre/onreIdle.gif')";
       }, 1000);
     }
   }
