@@ -7,23 +7,26 @@
 }
 
 .creepster-regular {
-  font-family: "Creepster", system-ui;
+  font-family: 'Creepster', system-ui;
   font-weight: 400;
   font-style: normal;
 }
 
 @keyframes pulse {
   0% {
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8), 0 0 10px #fdfcff, 0 0 20px #fdfcff;
-    }
-  
-    50% {
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 15px #fdfcff, 0 0 30px #fdfcff;
-    }
-  
-    100% {
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8), 0 0 10px #fdfcff, 0 0 20px #fdfcff;
-    }
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8), 0 0 10px #fdfcff,
+      0 0 20px #fdfcff;
+  }
+
+  50% {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 15px #fdfcff,
+      0 0 30px #fdfcff;
+  }
+
+  100% {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8), 0 0 10px #fdfcff,
+      0 0 20px #fdfcff;
+  }
 }
 
 body {
@@ -89,12 +92,12 @@ h2 {
   margin: 30px 500px;
   padding: 10px;
   font-family: 'Creepster', cursive;
-    font-size: 64px;
-    color: black;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-      text-align: center;
-      letter-spacing: 2px;
-      animation: pulse 2s infinite;
+  font-size: 64px;
+  color: black;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  letter-spacing: 2px;
+  animation: pulse 2s infinite;
 }
 
 .tercerito {
@@ -107,7 +110,6 @@ h2 {
   height: 400px;
   padding: 10px;
   height: 100%;
-
 }
 
 #selectCharacter1 {
@@ -126,13 +128,12 @@ h2 {
   display: inline-block;
   width: 30%;
   height: 95%;
-  margin: 10px 10px 10px 400px;;
+  margin: 10px 10px 10px 400px;
   border-radius: 10px;
   background-image: url('./imgs/characters/OnreChibi.png');
   background-size: 100%;
   background-repeat: no-repeat;
   transition: box-shadow 1s ease-in-out;
-  
 }
 
 /*hover of character selection*/
@@ -160,7 +161,6 @@ h2 {
   height: 30px;
 }
 
-
 .healthRecovery {
   position: absolute;
   background-color: green;
@@ -168,11 +168,10 @@ h2 {
   height: 30px;
 }
 
-
 #start {
   width: 1700px;
   height: 750px;
-  background-image: url('./imgs/castillo.webp')  ;
+  background-image: url('./imgs/castillo.webp');
   margin: 0 auto;
   position: relative;
   background-size: 1700px, 750px;
@@ -180,7 +179,7 @@ h2 {
   display: block;
 }
 
-#restart{
+#restart {
   width: 1700px;
   height: 750px;
   background-color: rgb(18, 18, 48);
@@ -205,6 +204,7 @@ h2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
 
 /* Sprite animations */
 
@@ -249,7 +249,6 @@ h2 {
 }
 
 #firstPlayerHB span {
-
   color: white;
   font-family: 'Pixelify Sans', sans-serif;
   font-size: 34px;
@@ -276,9 +275,10 @@ progress[value] {
   margin: 0 10px;
   border: none;
   border-radius: 5px;
-  background: var(--background);.barAndChara1 span {
-  margin-left: 11px;
-}
+  background: var(--background);
+  .barAndChara1 span {
+    margin-left: 11px;
+  }
 }
 
 progress[value]::-webkit-progress-bar {
