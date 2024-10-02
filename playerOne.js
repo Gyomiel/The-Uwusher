@@ -115,8 +115,8 @@ class Hero {
     this.health -= dmg;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
-        ? "url('/imgs/sprites/yurei/yureiHurtReverse.gif')"
-        : "url('/imgs/sprites/yurei/yureiHurt.gif')";
+        ? "url('./imgs/sprites/yurei/yureiHurtReverse.gif')"
+        : "url('./imgs/sprites/yurei/yureiHurt.gif')";
     this.checkingIfTheyDie();
   }
 
@@ -124,8 +124,8 @@ class Hero {
     if (this.health <= 0) {
       playerOne.sprite.style.backgroundImage =
         playerOne.previousDirection === -1
-          ? "url('/imgs/sprites/yurei/yureiDeadReverse.gif')"
-          : "url('/imgs/sprites/yurei/yureiDead.gif')";
+          ? "url('./imgs/sprites/yurei/yureiDeadReverse.gif')"
+          : "url('./imgs/sprites/yurei/yureiDead.gif')";
       setTimeout(function () {
         playerOne.removeHero();
         playerOne.x = 0;
@@ -135,8 +135,8 @@ class Hero {
       setTimeout(function () {
         playerOne.sprite.style.backgroundImage =
           playerOne.previousDirection === -1
-            ? "url('/imgs/sprites/yurei/yureiIdleReverse.gif')"
-            : "url('/imgs/sprites/yurei/yureiIdle.gif')";
+            ? "url('./imgs/sprites/yurei/yureiIdleReverse.gif')"
+            : "url('./imgs/sprites/yurei/yureiIdle.gif')";
       }, 1000);
     }
   }
