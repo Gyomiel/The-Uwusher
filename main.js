@@ -6,6 +6,7 @@ const healthBarP2 = document.getElementById('playerTwoHB');
 
 // Necessary variables:
 
+let playersArray = [];
 let playerOne;
 let moveHeroInterval;
 let startButton = document.getElementById('btn-start');
@@ -29,7 +30,6 @@ function startGame() {
   }, 15000);
 
   updateTheGame();
-
 }
 
 // If the characters are still alive, the game goes on:
@@ -48,6 +48,7 @@ function stillAlive() {
 function newHero() {
   playerOne = new Hero(20, 400);
   playerOne.insertHero();
+  playersArray.push(playerOne);
   moveHeroInterval = setInterval(function () {
     stillAlive();
   }, 10);
@@ -58,6 +59,7 @@ function newHero() {
 function newAntagonist() {
   playerTwo = new Antagonist(1580, 395);
   playerTwo.insertAntagonist();
+  playersArray.push(playerTwo);
   moveAntagonistInterval = setInterval(function () {
     stillAlive();
   }, 10);
