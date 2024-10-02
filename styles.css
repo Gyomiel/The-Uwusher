@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +17,7 @@ body {
 }
 
 #gameCanvas {
-  background-image: url("/imgs/map/horrorBG.png");
+  background-image: url('/imgs/map/horrorBG.png');
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -43,6 +45,7 @@ body {
 #antagonistContainer {
   position: absolute;
 }
+
 
 .power-up {
   position: absolute;
@@ -96,4 +99,103 @@ body {
   
   transform: translate(-50%, -50%);
   
+
+/* Sprite animations */
+
+.yureiIdle {
+  background-image: url('/imgs/sprites/yurei/yureiIdle.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(1.5);
+}
+
+.onreIdle {
+  background-image: url('/imgs/sprites/onre/onreIdle.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(1.5);
+}
+
+/* Health bars */
+
+#healthBars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#firstPlayerHB {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#secondPlayerHB {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#firstPlayerHB span {
+  color: white;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  -webkit-text-stroke: 2px black;
+}
+
+#secondPlayerHB span {
+  color: white;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  -webkit-text-stroke: 2px black;
+}
+
+progress[value] {
+  --w: 300px;
+  --color: linear-gradient(90deg, #ff6161, #1ecd1e) 0 / var(--w);
+  --background: lightgrey;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: var(--w);
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  background: var(--background);
+}
+
+progress[value]::-webkit-progress-bar {
+  border-radius: 5px;
+  background: var(--background);
+}
+
+progress[value]::-webkit-progress-value {
+  border-radius: 5px;
+  background: var(--color);
+}
+
+progress[value]::-moz-progress-bar {
+  border-radius: 5px;
+  background: var(--color);
+}
+
+.healthHeart {
+  width: 80px;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+}
+
+.barAndChara {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }

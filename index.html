@@ -17,11 +17,32 @@
   <div id="gameContainer">
     <img src="/imgs/overlay/overlay.gif" id="overlayGif" />
 
-    <div id="gameCanvas"></div>
+    <div id="gameCanvas">
+      <div id="healthBars">
+        <div id="firstPlayerHB">
+          <img class="healthHeart" src="/imgs/assets/heartHealth.png">
+          <div class="barAndChara">
+            <progress id="playerOneHB" value="600" max="600"></progress>
+            <span id="playerOneName">Yurei</span>
+          </div>
+        </div>
+        <div id="secondPlayerHB">
+          <div class="barAndChara">
+            <progress id="playerTwoHB" value="600" max="600"></progress>
+            <span id="playerTwoName">Onre</span>
+          </div>
+          <img class="healthHeart" src="/imgs/assets/heartHealth.png">
+
 
     <div id="restart">
       <button id="btn-restart">Restart Game<br>UwU</button>
     </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="yureiIdle"></div>
 
   </div>
   <script src="playerOne.js"></script>
