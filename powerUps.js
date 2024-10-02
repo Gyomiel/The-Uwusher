@@ -1,12 +1,12 @@
 class PowerUp {
-    constructor(x, y) {
+    constructor(x) {
         this.x = x;
-        this.y = y;
+        this.y = 0;
         this.width = 30;
         this.height = 30;
         this.sprite = document.createElement('div');
 
-        this.sprite.setAttribute('class', 'power-ups');
+        this.sprite.setAttribute('class', 'power-up');
         this.sprite.style.width = this.width + 'px';
         this.sprite.style.height = this.height + 'px';
         this.sprite.style.left = this.x + 'px';
@@ -16,7 +16,7 @@ class PowerUp {
     }
 
     fall(speed) {
-        this.y += speed; // Hacer que el power-up caiga
+        this.y += speed; 
         this.sprite.style.top = this.y + 'px';
     }
 }

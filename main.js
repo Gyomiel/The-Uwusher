@@ -1,22 +1,29 @@
 // Canvas context through DOM:
 
-const canvas = document.getElementById('gameCanvas');
+let canvas = document.getElementById('gameCanvas');
 
 // Necessary variables:
 
 let playerOne;
 let moveHeroInterval;
-let start = document.getElementById('btn-start');
-let restart = document.getElementById('btn-restart')
+let startButton = document.getElementById('btn-start');
+let restartButton = document.getElementById('btn-restart')
 let playerTwo;
 let moveAntagonistInterval;
 let powerUp;
+let startScreen = document.getElementById('start')
+let restartScreen = document.getElementById('restart')
+
 
 // Starting the game:
 
 function startGame() {
+  
   newHero();
   newAntagonist();
+  setInterval(function() {
+    spawnPowerUp(); 
+  }, 15000); 
   updateTheGame();
   
   console.log(powerUp)
@@ -56,24 +63,32 @@ function newAntagonist() {
 //Power ups
 
 function spawnPowerUp() {
-  if (!powerUp) { // Solo crea un power-up si no hay uno en pantalla
-    const x = Math.random() * (window.innerWidth - 30); // Generar posición x aleatoria
-    powerUp = new PowerUp(x, 0); // Posición y inicial en 0
-}
+  if (!powerUp) { 
+    const x = Math.random() * (window.innerWidth - 30); 
+    powerUp = new PowerUp(x); 
+    
+    setTimeout(function() {
+      if (powerUp) {
+        powerUp.sprite.style.display = 'none'; 
+        powerUp = null; 
+      }
+    }, 5000);
+  }
 } 
  
 
 
 
 function updatePowerUps() {
-  if (powerUp) {
-    powerUp.fall(2); // Hacer que el power-up caiga con velocidad 2
 
-    // Verificar si el power-up ha salido de la pantalla
-    if (powerUp.y > window.innerHeight) {
-        powerUp = null; // Eliminar el power-up si sale de la pantalla
+  if (powerUp) {
+    powerUp.fall(2); 
+    
+  }
+    
+    if (powerUp.y > 750) {
+      powerUp = null; 
     }
-}
 
 }
 
@@ -84,6 +99,7 @@ function gameOver() {
   playerOne.removeHero();
   clearInterval(moveAntagonistInterval);
   playerTwo.removeAntagonist();
+  restartScreen.style.display = 'block'
 }
 
 function updateTheGame() {
@@ -91,8 +107,7 @@ function updateTheGame() {
   playerTwo.gravityOnJump();
   playerOne.moveTheHeroHorizontally();
   playerTwo.moveTheAntagonistHorizontally();
-  spawnPowerUp()
-  updatePowerUps()
+  updatePowerUps();
   requestAnimationFrame(updateTheGame);
 }
 
@@ -107,6 +122,7 @@ function restartGame() {
   
   clearInterval(moveHeroInterval);
   clearInterval(moveAntagonistInterval);
+
   
 }
   
@@ -158,12 +174,18 @@ window.addEventListener('keyup', function (e) {
   }
 });
 
-start.addEventListener('click', function(event){
+startButton.addEventListener('click', function(event){
   startGame()
+  canvas.style.display = 'block'
+  startScreen.style.display = 'none'
+
+
 })
 
-restart.addEventListener('click', function(event) {
+restartButton.addEventListener('click', function(event) {
 restartGame()
+startScreen.style.display = 'none'
+
 })
 
 
