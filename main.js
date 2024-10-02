@@ -13,8 +13,11 @@ let restartButton = document.getElementById('btn-restart');
 let playerTwo;
 let moveAntagonistInterval;
 let powerUp;
-let startScreen = document.getElementById('start');
-let restartScreen = document.getElementById('restart');
+
+let startScreen = document.getElementById('start')
+let restartScreen = document.getElementById('restart')
+let healthRecovery;
+
 
 // Starting the game:
 
@@ -24,6 +27,7 @@ function startGame() {
   setInterval(function () {
     spawnPowerUp();
   }, 15000);
+
   updateTheGame();
 
 }
@@ -62,28 +66,88 @@ function newAntagonist() {
 //Power ups
 
 function spawnPowerUp() {
-  if (!powerUp) {
-    const x = Math.random() * (window.innerWidth - 30);
-    powerUp = new PowerUp(x);
+  if (!powerUp && !healthRecovery) {
+    const x = Math.random() * (1750 - 30);
+    const type = Math.floor(Math.random() * 2);
+    if (type === 0) {
+      powerUp = new PowerUp(x);
+    }
+    else {
+      healthRecovery = new HealthRecovery(x)
+    }
 
     setTimeout(function () {
       if (powerUp) {
         powerUp.sprite.style.display = 'none';
         powerUp = null;
       }
+      if (healthRecovery) {
+        healthRecovery.sprite.style.display = 'none';
+        healthRecovery = null;
+      }
     }, 5000);
   }
 }
+
 
 function updatePowerUps() {
   if (powerUp) {
     powerUp.fall(2);
     if (powerUp.y > 750) {
-      powerUp.sprite.remove();
+      powerUp.sprite.remove()
       powerUp = null;
     }
+    else {
+      powerUp.checkCollisions();
+    }
   }
+  if (healthRecovery) {
+    healthRecovery.fall(2);
+    if (healthRecovery.y > 750) {
+      healthRecovery.sprite.remove()
+      healthRecovery = null;
+    }
+    else {
+
+      healthRecovery.checkCollisions();
+    }
+  }
+
 }
+
+
+//HealthRecovery
+/*
+function spawnHealth() {
+  if (!healthRecovery) { 
+    const x = Math.random() * (1750 - 30); 
+    healthRecovery = new HealthRecovery(x); 
+    
+    setTimeout(function() {
+      if (healthRecovery) {
+        healthRecovery.sprite.style.display = 'none'; 
+        healthRecovery = null; 
+      }
+    }, 5000);
+  }
+} 
+ 
+function updateHealthRecovery() {
+
+  if (healthRecovery) {
+    healthRecovery.fall(2); 
+    if (healthRecovery.y > 750) {
+      healthRecovery.sprite.remove()
+      healthRecovery = null; 
+    }
+    else {
+
+      healthRecovery.checkCollisions();
+    }
+
+  }
+    
+}*/
 
 // Game over:
 
@@ -101,6 +165,7 @@ function updateTheGame() {
   playerOne.moveTheHeroHorizontally();
   playerTwo.moveTheAntagonistHorizontally();
   updatePowerUps();
+
   requestAnimationFrame(updateTheGame);
 }
 
@@ -114,6 +179,7 @@ function restartGame() {
   clearInterval(moveHeroInterval);
   clearInterval(moveAntagonistInterval);
 }
+
 
 // Add event listeners for keyboard control:
 
@@ -265,12 +331,16 @@ window.addEventListener('keyup', function (e) {
 });
 
 startButton.addEventListener('click', function (event) {
-  startGame();
-  canvas.style.display = 'block';
-  startScreen.style.display = 'none';
-});
+
+  startGame()
+  canvas.style.display = 'block'
+  startScreen.style.display = 'none'
+
+
+})
 
 restartButton.addEventListener('click', function (event) {
-  restartGame();
-  startScreen.style.display = 'none';
-});
+  restartGame()
+  startScreen.style.display = 'none'
+
+})

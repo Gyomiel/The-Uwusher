@@ -160,6 +160,15 @@ h2 {
   height: 30px;
 }
 
+
+.healthRecovery {
+  position: absolute;
+  background-color: green;
+  width: 30px;
+  height: 30px;
+}
+
+
 #start {
   width: 1700px;
   height: 750px;
@@ -171,9 +180,9 @@ h2 {
   display: block;
 }
 
-#restart {
-  width: 600px;
-  height: 700px;
+#restart{
+  width: 1700px;
+  height: 750px;
   background-color: rgb(18, 18, 48);
   margin: 0 auto;
   position: relative;
@@ -196,8 +205,6 @@ h2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
 
 /* Sprite animations */
 
