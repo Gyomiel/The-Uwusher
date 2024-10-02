@@ -187,9 +187,13 @@ window.addEventListener("keyup", function (e) {
 window.addEventListener("keyup", function (e) {
   if (e.key === "ArrowLeft") {
     playerTwo.directionX = 0;
+    playerTwo.sprite.style.backgroundImage =
+      "url('/imgs/sprites/onre/onreIdleReverse.gif')";
   }
   if (e.key === "ArrowRight") {
     playerTwo.directionX = 0;
+    playerTwo.sprite.style.backgroundImage =
+      "url('/imgs/sprites/onre/onreIdle.gif')";
   }
 
   if (e.key === "ArrowUp") {
@@ -200,7 +204,7 @@ window.addEventListener("keyup", function (e) {
         : "url('/imgs/sprites/onre/onreIdle.gif')";
   }
 
-  if (e.key === 'ArrowDown') {
+  if (e.key === "ArrowDown") {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1

@@ -25,6 +25,7 @@ class Antagonist {
     this.sprite.style.height = this.height + "px";
     this.sprite.style.top = this.y + "px";
     this.sprite.style.left = this.x + "px";
+    this.sprite.style.backgroundImage = "url('/imgs/sprites/onre/onreIdleReverse.gif')"
     canvas.appendChild(this.sprite);
   }
 
