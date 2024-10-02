@@ -20,7 +20,7 @@ function startGame() {
 // If the characters are still alive, the game goes on:
 
 function stillAlive() {
-  if (playerOne.health > 0 && playerTwo.health > 0) {
+  if (playerOne.health > 0 || playerTwo.health > 0) {
     playerOne.moveTheHeroHorizontally();
     playerTwo.moveTheAntagonistHorizontally();
   } else {
@@ -54,9 +54,9 @@ startGame();
 
 function gameOver() {
   clearInterval(moveHeroInterval);
-  playerOne.removeHero();
+  playerOne.checkingIfTheyDie();
   clearInterval(moveAntagonistInterval);
-  playerTwo.removeAntagonist();
+  playerTwo.checkingIfTheyDie();
 }
 
 function updateTheGame() {
