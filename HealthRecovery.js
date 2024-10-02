@@ -1,4 +1,4 @@
-class PowerUp {
+class HealthRecovery {
     constructor(x) {
         this.x = x;
         this.y = 0;
@@ -11,7 +11,7 @@ class PowerUp {
         this.sprite.style.height = this.height + 'px';
         this.sprite.style.left = this.x + 'px';
         this.sprite.style.top = this.y + 'px';
-        this.sprite.style.backgroundColor = 'yellow';
+        this.sprite.style.backgroundColor = 'verde';
         canvas.appendChild(this.sprite);
     }
 
@@ -28,10 +28,10 @@ class PowerUp {
            
                 console.log('pum');
            if (!this.collided) {
-            playerOne.strength *= 2
+            playerOne.health += 100
             this.collided = true
            }
-           console.log(playerOne.strength)
+           console.log(playerOne.health)
            this.sprite.remove()
            
         }
@@ -43,10 +43,10 @@ class PowerUp {
            
                 console.log('pum');
            if (!this.collided) {
-            playerTwo.strength *= 2
+            playerTwo.health += 100
             this.collided = true
            }
-           console.log(playerTwo.strength)
+           console.log(playerTwo.health)
            this.sprite.remove()
            
         }
