@@ -86,10 +86,13 @@ function updatePowerUps() {
 
   if (powerUp) {
     powerUp.fall(2); 
-    powerUp.checkCollisions();
     if (powerUp.y > 750) {
       powerUp.sprite.remove()
       powerUp = null; 
+    }
+    else {
+
+      powerUp.checkCollisions();
     }
 
   }
