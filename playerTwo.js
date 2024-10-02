@@ -106,6 +106,19 @@ class Antagonist {
     this.x = previousX;
   }
 
+  playerDistanceAttack() {
+    let spell = new Spell(playerTwo);
+    spell.sprite.style.backgroundImage =
+      playerTwo.directionX === -1
+        ? "url('./imgs/assets/spellAnimationReverse.gif')"
+        : "url('./imgs/assets/spellAnimation.gif')";
+    spell.sprite.style.backgroundImage =
+      playerTwo.previousDirection === -1
+        ? "url('./imgs/assets/spellAnimationReverse.gif')"
+        : "url('./imgs/assets/spellAnimation.gif')";
+    spell.insertSpell();
+  }
+
   receiveDamage(dmg) {
     console.log(healthBarP2);
     healthBarP2.value -= dmg;

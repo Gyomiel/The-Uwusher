@@ -24,8 +24,6 @@ class Spell {
       this.sprite.style.top = this.y + 'px';
       this.sprite.style.left = this.x + 'px';
     }
-
-    this.sprite.style.backgroundColor = 'blue';
     canvas.appendChild(this.sprite);
   }
 
@@ -51,7 +49,7 @@ class Spell {
       (playerFromArray) => playerFromArray !== this.player
     )[0];
 
-    if (self.x + self.width >= player.x && self.x < player.x + player.width) {
+    if (self.x + self.width >= player.x && self.x < player.x + player.width && self.y >= player.y && self.y + self.height <= player.y + player.height) {
       this.removeSpell();
       player.receiveDamage(this.dmg);
       return true;

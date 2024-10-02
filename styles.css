@@ -232,6 +232,8 @@ h2 {
   margin-left: 2rem;
   margin-right: 2rem;
   padding-top: 2.5rem;
+  position: sticky;
+  z-index: 2;
 }
 
 #firstPlayerHB {
@@ -338,4 +340,6 @@ progress[value]::-moz-progress-bar {
 
 .spellCast {
   position: absolute;
+  transform: scale(2.5);
+  background-size: contain;
 }
