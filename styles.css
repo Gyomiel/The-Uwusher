@@ -4,6 +4,26 @@
   box-sizing: border-box;
 }
 
+.creepster-regular {
+  font-family: "Creepster", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@keyframes pulse {
+  0% {
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8), 0 0 10px #fdfcff, 0 0 20px #fdfcff;
+    }
+  
+    50% {
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 15px #fdfcff, 0 0 30px #fdfcff;
+    }
+  
+    100% {
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8), 0 0 10px #fdfcff, 0 0 20px #fdfcff;
+    }
+}
+
 body {
   margin-top: 5rem;
 }
@@ -15,7 +35,7 @@ body {
 }
 
 #gameCanvas {
-  background-image: url("/imgs/map/horrorBG.png");
+  background-image: url("../The-Uwusher/imgs/map/horrorBG.png");
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -40,6 +60,94 @@ body {
 
 #antagonistContainer {
   position: absolute;
+}
+
+/*Style the menu of character selection*/
+
+section {
+  margin-bottom: 10px;
+  height: 750px;
+  background-image: url(../The-Uwusher/imgs/map/imgPrincipalCastillo.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.primerito {
+  height: 745px;
+}
+
+.segundito {
+  padding: 10px;
+  height: 740px;
+}
+
+h2 {
+  text-align: center;
+  margin: 30px 500px;
+  padding: 10px;
+  font-family: 'Creepster', cursive;
+    font-size: 64px;
+    color: black;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+      text-align: center;
+      letter-spacing: 2px;
+      animation: pulse 2s infinite;
+}
+
+.tercerito {
+  margin-right: 10px;
+  padding: 10px;
+  height: 600px;
+}
+
+#characterSelection {
+  height: 400px;
+  padding: 10px;
+  height: 100%;
+
+}
+
+#selectCharacter1 {
+  display: inline-block;
+  width: 30%;
+  height: 95%;
+  margin: 10px 10px 10px 150px;
+  border-radius: 10px;
+  background-image: url(../The-Uwusher/imgs/characters/YureiChibi.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: box-shadow 1s ease-in-out;
+}
+
+#selectCharacter2 {
+  display: inline-block;
+  width: 30%;
+  height: 95%;
+  margin: 10px 10px 10px 400px;;
+  border-radius: 10px;
+  background-image: url(../The-Uwusher/imgs/characters/OnreChibi.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  transition: box-shadow 1s ease-in-out;
+  
+}
+
+/*hover of character selection*/
+
+#selectCharacter1:hover {
+  border-color: white;
+  transform: scale(1.1);
+  transition: border-color 1s ease, transform 1s ease;
+  /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  animation: pulse 3s infinite;*/
+}
+
+#selectCharacter2:hover {
+  border-color: white;
+  transform: scale(1.1);
+  transition: border-color 1s ease, transform 1s ease;
+  /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  animation: pulse 3s infinite;*/
 }
 
 /* Sprite animation */
