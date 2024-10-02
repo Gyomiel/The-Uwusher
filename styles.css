@@ -54,6 +54,13 @@ body {
   height: 30px;
 }
 
+.healthRecovery {
+  position: absolute;
+  background-color: green;
+  width: 30px;
+  height: 30px;
+}
+
 #start{
   width: 1700px;
   height: 750px;

@@ -6,12 +6,12 @@ class HealthRecovery {
         this.height = 30;
         this.sprite = document.createElement('div');
         this.collided = false
-        this.sprite.setAttribute('class', 'power-up');
+        this.sprite.setAttribute('class', 'healthRecovery');
         this.sprite.style.width = this.width + 'px';
         this.sprite.style.height = this.height + 'px';
         this.sprite.style.left = this.x + 'px';
         this.sprite.style.top = this.y + 'px';
-        this.sprite.style.backgroundColor = 'verde';
+        this.sprite.style.backgroundColor = 'green';
         canvas.appendChild(this.sprite);
     }
 
@@ -26,12 +26,12 @@ class HealthRecovery {
             this.x + this.width > playerOne.x &&
             this.y + this.height > playerOne.y) {
            
-                console.log('pum');
+                
            if (!this.collided) {
             playerOne.health += 100
             this.collided = true
            }
-           console.log(playerOne.health)
+           console.log(playerOne.health + 'hp pl1 ')
            this.sprite.remove()
            
         }
@@ -41,12 +41,12 @@ class HealthRecovery {
             this.x + this.width > playerTwo.x &&
             this.y + this.height > playerTwo.y) {
            
-                console.log('pum');
+                
            if (!this.collided) {
             playerTwo.health += 100
             this.collided = true
            }
-           console.log(playerTwo.health)
+           console.log(playerTwo.health + 'hp pl2')
            this.sprite.remove()
            
         }

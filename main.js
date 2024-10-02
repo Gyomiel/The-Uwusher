@@ -16,7 +16,7 @@ let moveAntagonistInterval;
 let powerUp;
 let startScreen = document.getElementById('start')
 let restartScreen = document.getElementById('restart')
-
+let healthRecovery;
 
 // Starting the game:
 
@@ -27,6 +27,9 @@ function startGame() {
   setInterval(function() {
     spawnPowerUp(); 
   }, 15000); 
+  setInterval(function() {
+    spawnHealth()
+  }, 30000)
   updateTheGame();
   
   console.log(powerUp)
@@ -67,7 +70,7 @@ function newAntagonist() {
 
 function spawnPowerUp() {
   if (!powerUp) { 
-    const x = Math.random() * (window.innerWidth - 30); 
+    const x = Math.random() * (1750 - 30); 
     powerUp = new PowerUp(x); 
     
     setTimeout(function() {
@@ -100,6 +103,41 @@ function updatePowerUps() {
 
 }
 
+
+//HealthRecovery
+
+function spawnHealth() {
+  if (!healthRecovery) { 
+    const x = Math.random() * (1750 - 30); 
+    healthRecovery = new HealthRecovery(x); 
+    
+    setTimeout(function() {
+      if (healthRecovery) {
+        healthRecovery.sprite.style.display = 'none'; 
+        healthRecovery = null; 
+      }
+    }, 5000);
+  }
+} 
+ 
+function updateHealthRecovery() {
+
+  if (healthRecovery) {
+    healthRecovery.fall(2); 
+    if (healthRecovery.y > 750) {
+      healthRecovery.sprite.remove()
+      healthRecovery = null; 
+    }
+    else {
+
+      healthRecovery.checkCollisions();
+    }
+
+  }
+    
+
+}
+
 // Game over:
 
 function gameOver() {
@@ -117,6 +155,7 @@ function updateTheGame() {
   playerOne.moveTheHeroHorizontally();
   playerTwo.moveTheAntagonistHorizontally();
   updatePowerUps();
+  updateHealthRecovery()
   requestAnimationFrame(updateTheGame);
 }
 
