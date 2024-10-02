@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -35,7 +37,7 @@ body {
 }
 
 #gameCanvas {
-  background-image: url("../The-Uwusher/imgs/map/horrorBG.png");
+  background-image: url('./imgs/map/horrorBG.png');
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -52,6 +54,7 @@ body {
   opacity: 45%;
   pointer-events: none;
   z-index: 2;
+  display: none;
 }
 
 #heroContainer {
@@ -67,9 +70,10 @@ body {
 section {
   margin-bottom: 10px;
   height: 750px;
-  background-image: url(../The-Uwusher/imgs/map/imgPrincipalCastillo.webp);
+  background-image: url(./imgs/map/imgPrincipalCastillo.webp);
   background-size: cover;
   background-repeat: no-repeat;
+  display: none;
 }
 
 .primerito {
@@ -113,7 +117,7 @@ h2 {
   height: 95%;
   margin: 10px 10px 10px 150px;
   border-radius: 10px;
-  background-image: url(../The-Uwusher/imgs/characters/YureiChibi.png);
+  background-image: url('./imgs/characters/YureiChibi.png');
   background-size: cover;
   background-repeat: no-repeat;
   transition: box-shadow 1s ease-in-out;
@@ -125,7 +129,7 @@ h2 {
   height: 95%;
   margin: 10px 10px 10px 400px;;
   border-radius: 10px;
-  background-image: url(../The-Uwusher/imgs/characters/OnreChibi.png);
+  background-image: url('./imgs/characters/OnreChibi.png');
   background-size: 100%;
   background-repeat: no-repeat;
   transition: box-shadow 1s ease-in-out;
@@ -150,18 +154,156 @@ h2 {
   animation: pulse 3s infinite;*/
 }
 
-/* Sprite animation */
+.power-up {
+  position: absolute;
+  background-color: yellow;
+  width: 30px;
+  height: 30px;
+}
+
+#start{
+  width: 1700px;
+  height: 750px;
+  background-image: url('./imgs/castillo.webp')  ;
+  margin: 0 auto;
+  position: relative;
+  background-size: 1700px, 750px;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+#restart{
+  width: 600px;
+  height: 700px;
+  background-color: rgb(18, 18, 48);
+  margin: 0 auto;
+  position: relative;
+  display: none;
+}
+
+#btn-start {
+  width: 200px;
+ 
+  padding: 15px;
+  position: absolute;
+  
+  top: 50%;
+ 
+  left: 50%;
+  
+  transform: translate(-50%, -50%);
+  
+}
+
+#btn-restart {
+  width: 200px;
+ 
+  padding: 15px;
+  position: absolute;
+  
+  top: 50%;
+ 
+  left: 50%;
+  
+  transform: translate(-50%, -50%);
+}
+
+/* Sprite animations */
 
 .yureiIdle {
-  background-image: url("/imgs/sprites/yurei/yureiIdle.gif");
+  background-image: url('/imgs/sprites/yurei/yureiIdle.gif');
   background-repeat: no-repeat;
   background-size: cover;
   transform: scale(1.5);
 }
 
 .onreIdle {
-  background-image: url("/imgs/sprites/onre/onreIdle.gif");
+  background-image: url('/imgs/sprites/onre/onreIdle.gif');
   background-repeat: no-repeat;
   background-size: cover;
   transform: scale(1.5);
+}
+
+/* Health bars */
+
+#healthBars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#firstPlayerHB {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#secondPlayerHB {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#firstPlayerHB span {
+  color: white;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  -webkit-text-stroke: 2px black;
+}
+
+#secondPlayerHB span {
+  color: white;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  -webkit-text-stroke: 2px black;
+}
+
+progress[value] {
+  --w: 300px;
+  --color: linear-gradient(90deg, #ff6161, #1ecd1e) 0 / var(--w);
+  --background: lightgrey;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: var(--w);
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  background: var(--background);
+}
+
+progress[value]::-webkit-progress-bar {
+  border-radius: 5px;
+  background: var(--background);
+}
+
+progress[value]::-webkit-progress-value {
+  border-radius: 5px;
+  background: var(--color);
+}
+
+progress[value]::-moz-progress-bar {
+  border-radius: 5px;
+  background: var(--color);
+}
+
+.healthHeart {
+  width: 80px;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+}
+
+.barAndChara {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }

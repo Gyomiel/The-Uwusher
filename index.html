@@ -12,32 +12,62 @@
 </head>
 
 <body>
-  <section>
-    <div class="primerito">
-      <div class="segundito">
-        <h2>SELECT CHARACTER </h2>
-        <div class="tercerito">
-          <div id="characterSelection">
-            <span>
-              <div id="selectCharacter1"></div>
-            </span>
-            <span>
-              <div id="selectCharacter2"></div>
-            </span>
+    <div id="start">
+      <button id="btn-start">Start Game<br>UwU</button>
+    </div>
+    
+    <section>
+      <div class="primerito">
+        <div class="segundito">
+          <h2>SELECT CHARACTER </h2>
+          <div class="tercerito">
+            <div id="characterSelection">
+              <span>
+                <div id="selectCharacter1"></div>
+              </span>
+              <span>
+                <div id="selectCharacter2"></div>
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   <div id="gameContainer">
     <img src="/imgs/overlay/overlay.gif" id="overlayGif" />
 
-    <div id="gameCanvas"></div>
+    <div id="gameCanvas">
+      <div id="healthBars">
+        <div id="firstPlayerHB">
+          <img class="healthHeart" src="/imgs/assets/heartHealth.png">
+          <div class="barAndChara">
+            <progress id="playerOneHB" value="600" max="600"></progress>
+            <span id="playerOneName">Yurei</span>
+          </div>
+        </div>
+        <div id="secondPlayerHB">
+          <div class="barAndChara">
+            <progress id="playerTwoHB" value="600" max="600"></progress>
+            <span id="playerTwoName">Onre</span>
+          </div>
+          <img class="healthHeart" src="/imgs/assets/heartHealth.png">
+
+
+    <div id="restart">
+      <button id="btn-restart">Restart Game<br>UwU</button>
+    </div>
+
+
+        </div>
+      </div>
+    </div>
     <div class="yureiIdle"></div>
+
   </div>
   <script src="playerOne.js"></script>
   <script src="playerTwo.js"></script>
-  <script src="main.js"></script>
+  <script src="powerUps.js"></script>
+  <script src="main.js" defer></script>
 </body>
 
 </html>

@@ -13,18 +13,18 @@ class Hero {
     this.gravity = 1;
     this.isJumping = false;
     this.attacking = false;
-    this.health = 100;
-    this.strength = 20;
-    this.sprite = document.createElement("div");
+    this.health = 600;
+    this.strength = 100;
+    this.sprite = document.createElement('div');
   }
 
   insertHero() {
-    this.sprite.setAttribute("id", "heroContainer");
-    this.sprite.setAttribute("class", "yureiIdle");
-    this.sprite.style.width = this.width + "px";
-    this.sprite.style.height = this.height + "px";
-    this.sprite.style.top = this.y + "px";
-    this.sprite.style.left = this.x + "px";
+    this.sprite.setAttribute('id', 'heroContainer');
+    this.sprite.setAttribute('class', 'yureiIdle');
+    this.sprite.style.width = this.width + 'px';
+    this.sprite.style.height = this.height + 'px';
+    this.sprite.style.top = this.y + 'px';
+    this.sprite.style.left = this.x + 'px';
     canvas.appendChild(this.sprite);
   }
 
@@ -38,7 +38,7 @@ class Hero {
     this.checkCollisions();
     if (xAxis >= 0 && xAxis <= 1700 - this.width && !this.checkCollisions()) {
       this.x = xAxis;
-      this.sprite.style.left = this.x + "px";
+      this.sprite.style.left = this.x + 'px';
     }
 
     if (xAxis >= 0 && xAxis <= 1700 - this.width && this.checkCollisions()) {
@@ -46,10 +46,9 @@ class Hero {
         xAxis + this.bounceBack() >= 0 &&
         xAxis + this.bounceBack() <= 1700 - this.width
       ) {
-        console.log(xAxis + this.bounceBack());
 
         this.x = xAxis + this.bounceBack();
-        this.sprite.style.left = this.x + "px";
+        this.sprite.style.left = this.x + 'px';
       }
     }
   }
@@ -65,10 +64,6 @@ class Hero {
     }
   }
 
-  /*   healthBar() {
-    let healthBar = 
-  } */
-
   jumping() {
     if (!this.isJumping) {
       this.speedY = this.jumpStrength;
@@ -80,7 +75,7 @@ class Hero {
     if (this.isJumping && !this.checkCollisions()) {
       this.speedY += this.gravity;
       this.y += this.speedY;
-      this.sprite.style.top = this.y + "px";
+      this.sprite.style.top = this.y + 'px';
       if (this.y >= 400) {
         this.y = 400;
         this.isJumping = false;
@@ -96,15 +91,13 @@ class Hero {
     if (this.previousDirection === 1) {
       this.width += this.width / 2;
       if (this.checkCollisions()) {
-        playerTwo.health -= this.strength;
-        console.log("AttackingP1");
+        playerTwo.receiveDamage(this.strength);
       }
     } else {
       this.width += this.width / 2;
       this.x = this.x - this.width / 2;
       if (this.checkCollisions()) {
-        playerTwo.health -= this.strength;
-        console.log("AttackingP1");
+        playerTwo.receiveDamage(this.strength);
       }
     }
 
@@ -113,13 +106,38 @@ class Hero {
   }
 
   receiveDamage(dmg) {
+    healthBarP1.value -= dmg;
     this.health -= dmg;
-/*     console.log(dmg);
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
         ? "url('/imgs/sprites/yurei/yureiHurtReverse.gif')"
-        : "url('/imgs/sprites/yurei/yureiHurt.gif')"; */
+        : "url('/imgs/sprites/yurei/yureiHurt.gif')";
+    this.checkingIfTheyDie();
   }
+
+  checkingIfTheyDie() {
+    if (this.health <= 0) {
+      playerOne.sprite.style.backgroundImage =
+        playerOne.previousDirection === -1
+          ? "url('/imgs/sprites/yurei/yureiDeadReverse.gif')"
+          : "url('/imgs/sprites/yurei/yureiDead.gif')";
+      setTimeout(function () {
+        playerOne.removeHero();
+        playerOne.x = 0;
+        playerOne.y = 0;
+      }, 900);
+
+      console.log('AAAAAAAAAA');
+    } else {
+      setTimeout(function () {
+        playerOne.sprite.style.backgroundImage =
+          playerOne.previousDirection === -1
+            ? "url('/imgs/sprites/yurei/yureiIdleReverse.gif')"
+            : "url('/imgs/sprites/yurei/yureiIdle.gif')";
+      }, 1000);
+    }
+  }
+
   checkCollisions() {
     if (
       playerTwo.x < playerOne.x + playerOne.width &&
