@@ -31,7 +31,7 @@ function stillAlive() {
 // Inserting the hero (player one):
 
 function newHero() {
-  playerOne = new Hero(20, 360);
+  playerOne = new Hero(20, 400);
   playerOne.insertHero();
   moveHeroInterval = setInterval(function () {
     stillAlive();
@@ -41,7 +41,7 @@ function newHero() {
 // Inserting the antagonist (player two):
 
 function newAntagonist() {
-  playerTwo = new Antagonist(1620, 400);
+  playerTwo = new Antagonist(1580, 395);
   playerTwo.insertAntagonist();
   moveAntagonistInterval = setInterval(function () {
     stillAlive();
@@ -120,19 +120,39 @@ window.addEventListener("keydown", function (e) {
       playerTwo.previousDirection = -1;
       playerTwo.checkCollisions();
       playerTwo.moveTheAntagonistHorizontally();
+      playerTwo.sprite.style.backgroundImage =
+        "url('imgs/sprites/onre/onreRunReverse.gif')";
       break;
     case "ArrowRight":
       playerTwo.directionX = 1;
       playerTwo.previousDirection = 1;
       playerTwo.checkCollisions();
       playerTwo.moveTheAntagonistHorizontally();
+      playerTwo.sprite.style.backgroundImage =
+        "url('imgs/sprites/onre/onreRun.gif')";
       break;
     case "ArrowUp":
       playerTwo.checkCollisions();
       playerTwo.jumping();
+      playerTwo.sprite.style.backgroundImage =
+        playerTwo.directionX === -1
+          ? "url('/imgs/sprites/onre/onreJumpReverse.gif')"
+          : "url('/imgs/sprites/onre/onreJump.gif')";
+      playerTwo.sprite.style.backgroundImage =
+        playerTwo.previousDirection === -1
+          ? "url('/imgs/sprites/onre/onreJumpReverse.gif')"
+          : "url('/imgs/sprites/onre/onreJump.gif')";
       break;
     case "ArrowDown":
       playerTwo.playerMeleeAttack();
+      playerTwo.sprite.style.backgroundImage =
+        playerTwo.directionX === -1
+          ? "url('/imgs/sprites/onre/onreMeleeAttackReverse.gif')"
+          : "url('/imgs/sprites/onre/onreMeleeAttack.gif')";
+      playerTwo.sprite.style.backgroundImage =
+        playerTwo.previousDirection === -1
+          ? "url('/imgs/sprites/onre/onreMeleeAttackReverse.gif')"
+          : "url('/imgs/sprites/onre/onreMeleeAttack.gif')";
   }
 });
 
@@ -165,8 +185,27 @@ window.addEventListener("keyup", function (e) {
 });
 
 window.addEventListener("keyup", function (e) {
-  if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+  if (e.key === "ArrowLeft") {
     playerTwo.directionX = 0;
+  }
+  if (e.key === "ArrowRight") {
+    playerTwo.directionX = 0;
+  }
+
+  if (e.key === "ArrowUp") {
+    playerTwo.directionX = 0;
+    playerTwo.sprite.style.backgroundImage =
+      playerTwo.previousDirection === -1
+        ? "url('/imgs/sprites/onre/onreIdleReverse.gif')"
+        : "url('/imgs/sprites/onre/onreIdle.gif')";
+  }
+
+  if (e.key === 'ArrowDown') {
+    playerTwo.directionX = 0;
+    playerTwo.sprite.style.backgroundImage =
+      playerTwo.previousDirection === -1
+        ? "url('/imgs/sprites/onre/onreIdleReverse.gif')"
+        : "url('/imgs/sprites/onre/onreIdle.gif')";
   }
 });
 

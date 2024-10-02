@@ -81,8 +81,8 @@ class Hero {
       this.speedY += this.gravity;
       this.y += this.speedY;
       this.sprite.style.top = this.y + 'px';
-      if (this.y >= 360) {
-        this.y = 360;
+      if (this.y >= 400) {
+        this.y = 400;
         this.isJumping = false;
         this.speedY = 0;
       }
