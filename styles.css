@@ -65,8 +65,8 @@ body {
 }
 
 #restart{
-  width: 600px;
-  height: 700px;
+  width: 1700px;
+  height: 750px;
   background-color: rgb(18, 18, 48);
   margin: 0 auto;
   position: relative;
@@ -98,6 +98,8 @@ body {
   left: 50%;
   
   transform: translate(-50%, -50%);
+
+}
   
 
 /* Sprite animations */
