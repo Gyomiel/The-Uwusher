@@ -83,12 +83,12 @@ function updatePowerUps() {
 
   if (powerUp) {
     powerUp.fall(2); 
-    
-  }
-    
     if (powerUp.y > 750) {
       powerUp = null; 
     }
+    
+  }
+    
 
 }
 
