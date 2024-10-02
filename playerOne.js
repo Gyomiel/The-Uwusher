@@ -46,7 +46,6 @@ class Hero {
         xAxis + this.bounceBack() >= 0 &&
         xAxis + this.bounceBack() <= 1700 - this.width
       ) {
-
         this.x = xAxis + this.bounceBack();
         this.sprite.style.left = this.x + 'px';
       }
@@ -105,6 +104,12 @@ class Hero {
     this.x = previousX;
   }
 
+  playerDistanceAttack() {
+    let spell = new Spell(playerOne);
+    console.log(spell);
+    spell.insertSpell();
+  }
+
   receiveDamage(dmg) {
     healthBarP1.value -= dmg;
     this.health -= dmg;
@@ -126,8 +131,6 @@ class Hero {
         playerOne.x = 0;
         playerOne.y = 0;
       }, 900);
-
-      console.log('AAAAAAAAAA');
     } else {
       setTimeout(function () {
         playerOne.sprite.style.backgroundImage =

@@ -1,6 +1,5 @@
 // Canvas context through DOM:
 
-
 const canvas = document.getElementById('gameCanvas');
 const healthBarP1 = document.getElementById('playerOneHB');
 const healthBarP2 = document.getElementById('playerTwoHB');
@@ -10,26 +9,23 @@ const healthBarP2 = document.getElementById('playerTwoHB');
 let playerOne;
 let moveHeroInterval;
 let startButton = document.getElementById('btn-start');
-let restartButton = document.getElementById('btn-restart')
+let restartButton = document.getElementById('btn-restart');
 let playerTwo;
 let moveAntagonistInterval;
 let powerUp;
-let startScreen = document.getElementById('start')
-let restartScreen = document.getElementById('restart')
-
+let startScreen = document.getElementById('start');
+let restartScreen = document.getElementById('restart');
 
 // Starting the game:
 
 function startGame() {
-  
   newHero();
   newAntagonist();
-  setInterval(function() {
-    spawnPowerUp(); 
-  }, 15000); 
+  setInterval(function () {
+    spawnPowerUp();
+  }, 15000);
   updateTheGame();
-  
-  console.log(powerUp)
+
 }
 
 // If the characters are still alive, the game goes on:
@@ -66,34 +62,27 @@ function newAntagonist() {
 //Power ups
 
 function spawnPowerUp() {
-  if (!powerUp) { 
-    const x = Math.random() * (window.innerWidth - 30); 
-    powerUp = new PowerUp(x); 
-    
-    setTimeout(function() {
+  if (!powerUp) {
+    const x = Math.random() * (window.innerWidth - 30);
+    powerUp = new PowerUp(x);
+
+    setTimeout(function () {
       if (powerUp) {
-        powerUp.sprite.style.display = 'none'; 
-        powerUp = null; 
+        powerUp.sprite.style.display = 'none';
+        powerUp = null;
       }
     }, 5000);
   }
-} 
- 
-
-
+}
 
 function updatePowerUps() {
-
   if (powerUp) {
-    powerUp.fall(2); 
+    powerUp.fall(2);
     if (powerUp.y > 750) {
-      powerUp.sprite.remove()
-      powerUp = null; 
+      powerUp.sprite.remove();
+      powerUp = null;
     }
-    
   }
-    
-
 }
 
 // Game over:
@@ -102,9 +91,8 @@ function gameOver() {
   clearInterval(moveHeroInterval);
   playerOne.checkingIfTheyDie();
   clearInterval(moveAntagonistInterval);
-
-  restartScreen.style.display = 'block'
   playerTwo.checkingIfTheyDie();
+  restartScreen.style.display = 'block';
 }
 
 function updateTheGame() {
@@ -117,21 +105,15 @@ function updateTheGame() {
 }
 
 function restartGame() {
- 
-  canvas.innerHTML = ''; 
-  
+  canvas.innerHTML = '';
+
   playerOne = null;
   playerTwo = null;
   powerUp = null;
 
-  
   clearInterval(moveHeroInterval);
   clearInterval(moveAntagonistInterval);
-
-  
 }
-  
-
 
 // Add event listeners for keyboard control:
 
@@ -175,6 +157,10 @@ window.addEventListener('keydown', function (e) {
         playerOne.previousDirection === -1
           ? "url('/imgs/sprites/yurei/yureiMeleeAttackReverse.gif')"
           : "url('/imgs/sprites/yurei/yureiMeleeAttack.gif')";
+      break;
+    case 'f':
+      playerOne.playerDistanceAttack();
+      break;
   }
 });
 
@@ -278,18 +264,13 @@ window.addEventListener('keyup', function (e) {
   }
 });
 
-startButton.addEventListener('click', function(event){
-  startGame()
-  canvas.style.display = 'block'
-  startScreen.style.display = 'none'
+startButton.addEventListener('click', function (event) {
+  startGame();
+  canvas.style.display = 'block';
+  startScreen.style.display = 'none';
+});
 
-
-})
-
-restartButton.addEventListener('click', function(event) {
-restartGame()
-startScreen.style.display = 'none'
-
-})
-
-
+restartButton.addEventListener('click', function (event) {
+  restartGame();
+  startScreen.style.display = 'none';
+});
