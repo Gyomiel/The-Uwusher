@@ -21,17 +21,15 @@ let healthRecovery;
 // Starting the game:
 
 function startGame() {
-  
+
   newHero();
   newAntagonist();
-  setInterval(function() {
-    spawnPowerUp(); 
-  }, 15000); 
-  setInterval(function() {
-    spawnHealth()
-  }, 30000)
+  setInterval(function () {
+    spawnPowerUp();
+  }, 15000);
+
   updateTheGame();
-  
+
   console.log(powerUp)
 }
 
@@ -69,43 +67,62 @@ function newAntagonist() {
 //Power ups
 
 function spawnPowerUp() {
-  if (!powerUp) { 
-    const x = Math.random() * (1750 - 30); 
-    powerUp = new PowerUp(x); 
-    
-    setTimeout(function() {
+  if (!powerUp && !healthRecovery) {
+    const x = Math.random() * (1750 - 30);
+    const type = Math.floor(Math.random() * 2);
+    if (type === 0) {
+      powerUp = new PowerUp(x);
+    }
+    else {
+      healthRecovery = new HealthRecovery(x)
+    }
+    setTimeout(function () {
       if (powerUp) {
-        powerUp.sprite.style.display = 'none'; 
-        powerUp = null; 
+        powerUp.sprite.style.display = 'none';
+        powerUp = null;
+      }
+      if (healthRecovery) {
+        healthRecovery.sprite.style.display = 'none';
+        healthRecovery = null;
       }
     }, 5000);
   }
-} 
- 
+
+}
+
 
 
 
 function updatePowerUps() {
 
   if (powerUp) {
-    powerUp.fall(2); 
+    powerUp.fall(2);
     if (powerUp.y > 750) {
       powerUp.sprite.remove()
-      powerUp = null; 
+      powerUp = null;
     }
     else {
 
       powerUp.checkCollisions();
     }
-
   }
-    
+  if (healthRecovery) {
+    healthRecovery.fall(2);
+    if (healthRecovery.y > 750) {
+      healthRecovery.sprite.remove()
+      healthRecovery = null;
+    }
+    else {
+
+      healthRecovery.checkCollisions();
+    }
+  }
 
 }
 
 
 //HealthRecovery
-
+/*
 function spawnHealth() {
   if (!healthRecovery) { 
     const x = Math.random() * (1750 - 30); 
@@ -136,7 +153,7 @@ function updateHealthRecovery() {
   }
     
 
-}
+}*/
 
 // Game over:
 
@@ -155,25 +172,25 @@ function updateTheGame() {
   playerOne.moveTheHeroHorizontally();
   playerTwo.moveTheAntagonistHorizontally();
   updatePowerUps();
-  updateHealthRecovery()
+
   requestAnimationFrame(updateTheGame);
 }
 
 function restartGame() {
- 
-  canvas.innerHTML = ''; 
-  
+
+  canvas.innerHTML = '';
+
   playerOne = null;
   playerTwo = null;
   powerUp = null;
 
-  
+
   clearInterval(moveHeroInterval);
   clearInterval(moveAntagonistInterval);
 
-  
+
 }
-  
+
 
 
 // Add event listeners for keyboard control:
@@ -321,7 +338,7 @@ window.addEventListener('keyup', function (e) {
   }
 });
 
-startButton.addEventListener('click', function(event){
+startButton.addEventListener('click', function (event) {
   startGame()
   canvas.style.display = 'block'
   startScreen.style.display = 'none'
@@ -329,9 +346,9 @@ startButton.addEventListener('click', function(event){
 
 })
 
-restartButton.addEventListener('click', function(event) {
-restartGame()
-startScreen.style.display = 'none'
+restartButton.addEventListener('click', function (event) {
+  restartGame()
+  startScreen.style.display = 'none'
 
 })
 
