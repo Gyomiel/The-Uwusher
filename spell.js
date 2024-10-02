@@ -36,9 +36,8 @@ class Spell {
 
   spellMovement() {
     let newX = this.x + this.speed * this.directionX;
-    this.directionX < 0
-      ? this.checkCollisionsFromRight(this)
-      : this.checkCollisionsFromLeft(this);
+    this.checkCollisions(this)
+  
     if (newX >= 0 && newX <= 1700 - this.width) {
       this.x = newX;
       this.sprite.style.left = this.x + 'px';
@@ -47,31 +46,17 @@ class Spell {
     }
   }
 
-  checkCollisionsFromLeft(self) {
+  checkCollisions(self) {
     let player = playersArray.filter(
       (playerFromArray) => playerFromArray !== this.player
     )[0];
 
-    if (self.x >= player.x + player.width) {
+    if (self.x + self.width >= player.x && self.x < player.x + player.width) {
       this.removeSpell();
       player.receiveDamage(this.dmg);
-
-      console.log('AAAAAAAAAAAAA');
       return true;
     }
+    return false;
   }
 
-  checkCollisionsFromRight(self) {
-    let player = playersArray.filter(
-      (playerFromArray) => playerFromArray !== this.player
-    )[0];
-
-    if (self.x <= player.x + player.width) {
-      this.removeSpell();
-      player.receiveDamage(this.dmg);
-
-      console.log('me rompieron el proyecto xd');
-      return true;
-    }
-  }
 }
