@@ -209,15 +209,29 @@ h2 {
 
 /* Sprite animations */
 
-.yureiIdle {
-  background-image: url('./imgs/sprites/yurei/yureiIdle.gif');
+.yurei {
+  background-image: url('./imgs/sprites/yurei/Idle.gif');
   background-repeat: no-repeat;
   background-size: cover;
   transform: scale(1.5);
 }
 
-.onreIdle {
-  background-image: url('./imgs/sprites/onre/onreIdle.gif');
+.onre {
+  background-image: url('./imgs/sprites/onre/Idle.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(1.5);
+}
+
+.kitsune {
+  background-image: url('/imgs/sprites/kitsune/Idle.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(1.5);
+}
+
+.karasu {
+  background-image: url('/imgs/sprites/karasu/Idle.gif');
   background-repeat: no-repeat;
   background-size: cover;
   transform: scale(1.5);
@@ -318,14 +332,16 @@ progress[value]::-moz-progress-bar {
 }
 
 @keyframes beat {
-  0%, 100% {
-      transform: scale(1);
+  0%,
+  100% {
+    transform: scale(1);
   }
-  25%, 75% {
-      transform: scale(1.1);
+  25%,
+  75% {
+    transform: scale(1.1);
   }
   50% {
-      transform: scale(1.15);
+    transform: scale(1.15);
   }
 }
 

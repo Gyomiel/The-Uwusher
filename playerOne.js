@@ -1,7 +1,8 @@
 class Hero {
-  constructor(x, y) {
+  constructor(x, y, type) {
     this.x = x;
     this.y = y;
+    this.type = type;
     this.width = 80;
     this.height = 150;
     this.directionX = 0;
@@ -16,16 +17,16 @@ class Hero {
     this.health = 600;
     this.strength = 100;
     this.spellCounter = 0;
-    this.sprite = document.createElement("div");
+    this.sprite = document.createElement('div');
   }
 
   insertHero() {
-    this.sprite.setAttribute("id", "heroContainer");
-    this.sprite.setAttribute("class", "yureiIdle");
-    this.sprite.style.width = this.width + "px";
-    this.sprite.style.height = this.height + "px";
-    this.sprite.style.top = this.y + "px";
-    this.sprite.style.left = this.x + "px";
+    this.sprite.setAttribute('id', 'heroContainer');
+    this.sprite.setAttribute('class', this.type);
+    this.sprite.style.width = this.width + 'px';
+    this.sprite.style.height = this.height + 'px';
+    this.sprite.style.top = this.y + 'px';
+    this.sprite.style.left = this.x + 'px';
     canvas.appendChild(this.sprite);
   }
 
@@ -39,7 +40,7 @@ class Hero {
     this.checkCollisions();
     if (xAxis >= 0 && xAxis <= 1700 - this.width && !this.checkCollisions()) {
       this.x = xAxis;
-      this.sprite.style.left = this.x + "px";
+      this.sprite.style.left = this.x + 'px';
     }
 
     if (xAxis >= 0 && xAxis <= 1700 - this.width && this.checkCollisions()) {
@@ -48,7 +49,7 @@ class Hero {
         xAxis + this.bounceBack() <= 1700 - this.width
       ) {
         this.x = xAxis + this.bounceBack();
-        this.sprite.style.left = this.x + "px";
+        this.sprite.style.left = this.x + 'px';
       }
     }
   }
@@ -75,7 +76,7 @@ class Hero {
     if (this.isJumping && !this.checkCollisions()) {
       this.speedY += this.gravity;
       this.y += this.speedY;
-      this.sprite.style.top = this.y + "px";
+      this.sprite.style.top = this.y + 'px';
       if (this.y >= 400) {
         this.y = 400;
         this.isJumping = false;
@@ -109,13 +110,12 @@ class Hero {
     let spell = new Spell(playerOne);
     spell.sprite.style.backgroundImage =
       playerOne.directionX === -1
-        ? "url('./imgs/sprites/yurei/spellAnimationReverse.gif')"
-        : "url('./imgs/sprites/yurei/spellAnimation.gif')";
+        ? `url('./imgs/sprites/${this.type}/spellAnimationReverse.gif')`
+        : `url('./imgs/sprites/${this.type}/spellAnimation.gif')`;
     spell.sprite.style.backgroundImage =
-    
       playerOne.previousDirection === -1
-        ? "url('imgs/sprites/yurei/spellAnimationReverse.gif')"
-        : "url('./imgs/sprites/yurei/spellAnimation.gif')";
+        ? `url('imgs/sprites/${this.type}/spellAnimationReverse.gif')`
+        : `url('./imgs/sprites/${this.type}/spellAnimation.gif')`;
     spell.insertSpell();
   }
 
@@ -124,8 +124,8 @@ class Hero {
     this.health -= dmg;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
-        ? "url('./imgs/sprites/yurei/yureiHurtReverse.gif')"
-        : "url('./imgs/sprites/yurei/yureiHurt.gif')";
+        ? `url('./imgs/sprites/${this.type}/HurtReverse.gif')`
+        : `url('./imgs/sprites/${this.type}/Hurt.gif')`;
     this.checkingIfTheyDie();
   }
 
@@ -133,8 +133,8 @@ class Hero {
     if (this.health <= 0) {
       playerOne.sprite.style.backgroundImage =
         playerOne.previousDirection === -1
-          ? "url('./imgs/sprites/yurei/yureiDeadReverse.gif')"
-          : "url('./imgs/sprites/yurei/yureiDead.gif')";
+          ? `url('./imgs/sprites/${this.type}/DeadReverse.gif')`
+          : `url('./imgs/sprites/${this.type}/Dead.gif')`;
       setTimeout(function () {
         playerOne.removeHero();
         playerOne.x = 0;
@@ -144,8 +144,8 @@ class Hero {
       setTimeout(function () {
         playerOne.sprite.style.backgroundImage =
           playerOne.previousDirection === -1
-            ? "url('./imgs/sprites/yurei/yureiIdleReverse.gif')"
-            : "url('./imgs/sprites/yurei/yureiIdle.gif')";
+            ? `url('./imgs/sprites/${playerOne.type}/IdleReverse.gif')`
+            : `url('./imgs/sprites/${playerOne.type}/Idle.gif')`;
       }, 1000);
     }
   }

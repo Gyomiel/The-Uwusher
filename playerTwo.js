@@ -1,7 +1,8 @@
 class Antagonist {
-  constructor(x, y) {
+  constructor(x, y, type) {
     this.x = x;
     this.y = y;
+    this.type = type
     this.width = 80;
     this.height = 150;
     this.directionX = 0;
@@ -21,13 +22,13 @@ class Antagonist {
 
   insertAntagonist() {
     this.sprite.setAttribute("id", "antagonistContainer");
-    this.sprite.setAttribute("class", "onreIdle");
+    this.sprite.setAttribute("class", this.type);
     this.sprite.style.width = this.width + "px";
     this.sprite.style.height = this.height + "px";
     this.sprite.style.top = this.y + "px";
     this.sprite.style.left = this.x + "px";
     this.sprite.style.backgroundImage =
-      "url('./imgs/sprites/onre/onreIdleReverse.gif')";
+      `url('./imgs/sprites/${this.type}/IdleReverse.gif')`;
     canvas.appendChild(this.sprite);
   }
 
@@ -111,12 +112,12 @@ class Antagonist {
     let spell = new Spell(playerTwo);
     spell.sprite.style.backgroundImage =
       playerTwo.directionX === -1
-        ? "url('./imgs/sprites/onre/spellAnimationReverse.gif')"
-        : "url('./imgs/sprites/onre/spellAnimation.gif')";
+        ? `url('./imgs/sprites/${this.type}/spellAnimationReverse.gif')`
+        : `url('./imgs/sprites/${this.type}/spellAnimation.gif')`;
     spell.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
-        ? "url('./imgs/sprites/onre/spellAnimationReverse.gif')"
-        : "url('./imgs/sprites/onre/spellAnimation.gif')";
+        ? `url('./imgs/sprites/${this.type}/spellAnimationReverse.gif')`
+        : `url('./imgs/sprites/${this.type}/spellAnimation.gif')`;
     spell.insertSpell();
   }
 
@@ -125,8 +126,8 @@ class Antagonist {
     this.health -= dmg;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
-        ? "url('./imgs/sprites/onre/onreHurtReverse.gif')"
-        : "url('./imgs/sprites/onre/onreHurt.gif')";
+        ? `url('./imgs/sprites/${this.type}/HurtReverse.gif')`
+        : `url('./imgs/sprites/${this.type}/Hurt.gif')`;
     this.checkingIfTheyDie();
   }
 
@@ -134,8 +135,8 @@ class Antagonist {
     if (this.health <= 0) {
       playerTwo.sprite.style.backgroundImage =
         playerTwo.previousDirection === -1
-          ? "url('./imgs/sprites/onre/onreDeadReverse.gif')"
-          : "url('./imgs/sprites/onre/onreDead.gif')";
+          ? `url('./imgs/sprites/${this.type}/DeadReverse.gif')`
+          : `url('./imgs/sprites/${this.type}/Dead.gif')`;
       setTimeout(() => {
         playerTwo.x = 0;
         playerTwo.y = 0;
@@ -145,8 +146,8 @@ class Antagonist {
       setTimeout(function () {
         playerTwo.sprite.style.backgroundImage =
           playerTwo.previousDirection === -1
-            ? "url('./imgs/sprites/onre/onreIdleReverse.gif')"
-            : "url('./imgs/sprites/onre/onreIdle.gif')";
+            ? `url('./imgs/sprites/${playerTwo.type}/IdleReverse.gif')`
+            : `url('./imgs/sprites/${playerTwo.type}/Idle.gif')`;
       }, 1000);
     }
   }

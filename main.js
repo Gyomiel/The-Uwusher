@@ -11,9 +11,11 @@ let playersArray = [];
 
 let playerOne;
 let moveHeroInterval;
+let selectPlayerOne = 'yurei';
 
 let playerTwo;
 let moveAntagonistInterval;
+let selectPlayerTwo = 'onre';
 
 let powerUp;
 let healthRecovery;
@@ -49,7 +51,7 @@ function stillAlive() {
 // Inserting the hero (player one):
 
 function newHero() {
-  playerOne = new Hero(20, 400);
+  playerOne = new Hero(20, 400, selectPlayerOne);
   playerOne.insertHero();
   playersArray.push(playerOne);
   moveHeroInterval = setInterval(function () {
@@ -60,7 +62,7 @@ function newHero() {
 // Inserting the antagonist (player two):
 
 function newAntagonist() {
-  playerTwo = new Antagonist(1580, 395);
+  playerTwo = new Antagonist(1580, 395, selectPlayerTwo);
   playerTwo.insertAntagonist();
   playersArray.push(playerTwo);
   moveAntagonistInterval = setInterval(function () {
@@ -79,18 +81,6 @@ function spawnPowerUp() {
     } else {
       healthRecovery = new HealthRecovery(x);
     }
-
-    //Esto hace que el powerup se "borre" antes de tiempo
-    /*     setTimeout(function () {
-      if (powerUp) {
-        powerUp.sprite.style.display = "none";
-        powerUp = null;
-      }
-      if (healthRecovery) {
-        healthRecovery.sprite.style.display = "none";
-        healthRecovery = null;
-      }
-    }, 5000); */
   }
 }
 
@@ -115,39 +105,6 @@ function updatePowerUps() {
     }
   }
 }
-
-//HealthRecovery
-/*
-function spawnHealth() {
-  if (!healthRecovery) { 
-    const x = Math.random() * (1750 - 30); 
-    healthRecovery = new HealthRecovery(x); 
-    
-    setTimeout(function() {
-      if (healthRecovery) {
-        healthRecovery.sprite.style.display = 'none'; 
-        healthRecovery = null; 
-      }
-    }, 5000);
-  }
-} 
- 
-function updateHealthRecovery() {
-
-  if (healthRecovery) {
-    healthRecovery.fall(2); 
-    if (healthRecovery.y > 750) {
-      healthRecovery.sprite.remove()
-      healthRecovery = null; 
-    }
-    else {
-
-      healthRecovery.checkCollisions();
-    }
-
-  }
-    
-}*/
 
 // Game over:
 
@@ -189,39 +146,37 @@ window.addEventListener('keydown', function (e) {
       playerOne.previousDirection = -1;
       playerOne.checkCollisions();
       playerOne.moveTheHeroHorizontally();
-      playerOne.sprite.style.backgroundImage =
-        "url('/imgs/sprites/yurei/yureiRunReverse.gif')";
+      playerOne.sprite.style.backgroundImage = `url('/imgs/sprites/${playerOne.type}/RunReverse.gif')`;
       break;
     case 'd':
       playerOne.directionX = 1;
       playerOne.previousDirection = 1;
       playerOne.checkCollisions();
       playerOne.moveTheHeroHorizontally();
-      playerOne.sprite.style.backgroundImage =
-        "url('/imgs/sprites/yurei/yureiRun.gif')";
+      playerOne.sprite.style.backgroundImage = `url('/imgs/sprites/${playerOne.type}/Run.gif')`;
       break;
     case 'w':
       playerOne.checkCollisions();
       playerOne.jumping();
       playerOne.sprite.style.backgroundImage =
         playerOne.directionX === -1
-          ? "url('/imgs/sprites/yurei/yureiJumpReverse.gif')"
-          : "url('/imgs/sprites/yurei/yureiJump.gif')";
+          ? `url('/imgs/sprites/${playerOne.type}/JumpReverse.gif')`
+          : `url('/imgs/sprites/${playerOne.type}/Jump.gif')`;
       playerOne.sprite.style.backgroundImage =
         playerOne.previousDirection === -1
-          ? "url('/imgs/sprites/yurei/yureiJumpReverse.gif')"
-          : "url('/imgs/sprites/yurei/yureiJump.gif')";
+          ? `url('/imgs/sprites/${playerOne.type}/JumpReverse.gif')`
+          : `url('/imgs/sprites/${playerOne.type}/Jump.gif')`;
       break;
     case ' ':
       playerOne.playerMeleeAttack();
       playerOne.sprite.style.backgroundImage =
         playerOne.directionX === -1
-          ? "url('/imgs/sprites/yurei/yureiMeleeAttackReverse.gif')"
-          : "url('/imgs/sprites/yurei/yureiMeleeAttack.gif')";
+          ? `url('/imgs/sprites/${playerOne.type}/MeleeAttackReverse.gif')`
+          : `url('/imgs/sprites/${playerOne.type}/MeleeAttack.gif')`;
       playerOne.sprite.style.backgroundImage =
         playerOne.previousDirection === -1
-          ? "url('/imgs/sprites/yurei/yureiMeleeAttackReverse.gif')"
-          : "url('/imgs/sprites/yurei/yureiMeleeAttack.gif')";
+          ? `url('/imgs/sprites/${playerOne.type}/MeleeAttackReverse.gif')`
+          : `url('/imgs/sprites/${playerOne.type}/MeleeAttack.gif')`;
       break;
     case 'f':
       if (playerOne.spellCounter < 1) {
@@ -229,12 +184,12 @@ window.addEventListener('keydown', function (e) {
         playerOne.playerDistanceAttack();
         playerOne.sprite.style.backgroundImage =
           playerOne.directionX === -1
-            ? "url('./imgs/sprites/yurei/yureiSpellReverse.gif')"
-            : "url('./imgs/sprites/yurei/yureiSpell.gif')";
+            ? `url('./imgs/sprites/${playerOne.type}/SpellReverse.gif')`
+            : `url('./imgs/sprites/${playerOne.type}/Spell.gif')`;
         playerOne.sprite.style.backgroundImage =
           playerOne.previousDirection === -1
-            ? "url('./imgs/sprites/yurei/yureiSpellReverse.gif')"
-            : "url('./imgs/sprites/yurei/yureiSpell.gif')";
+            ? `url('./imgs/sprites/${playerOne.type}/SpellReverse.gif')`
+            : `url('./imgs/sprites/${playerOne.type}/Spell.gif')`;
         break;
       }
   }
@@ -247,39 +202,37 @@ window.addEventListener('keydown', function (e) {
       playerTwo.previousDirection = -1;
       playerTwo.checkCollisions();
       playerTwo.moveTheAntagonistHorizontally();
-      playerTwo.sprite.style.backgroundImage =
-        "url('imgs/sprites/onre/onreRunReverse.gif')";
+      playerTwo.sprite.style.backgroundImage = `url('imgs/sprites/${playerTwo.type}/RunReverse.gif')`;
       break;
     case 'ArrowRight':
       playerTwo.directionX = 1;
       playerTwo.previousDirection = 1;
       playerTwo.checkCollisions();
       playerTwo.moveTheAntagonistHorizontally();
-      playerTwo.sprite.style.backgroundImage =
-        "url('imgs/sprites/onre/onreRun.gif')";
+      playerTwo.sprite.style.backgroundImage = `url('imgs/sprites/${playerTwo.type}/Run.gif')`;
       break;
     case 'ArrowUp':
       playerTwo.checkCollisions();
       playerTwo.jumping();
       playerTwo.sprite.style.backgroundImage =
         playerTwo.directionX === -1
-          ? "url('/imgs/sprites/onre/onreJumpReverse.gif')"
-          : "url('/imgs/sprites/onre/onreJump.gif')";
+          ? `url('/imgs/sprites/${playerTwo.type}/JumpReverse.gif')`
+          : `url('/imgs/sprites/${playerTwo.type}/Jump.gif')`;
       playerTwo.sprite.style.backgroundImage =
         playerTwo.previousDirection === -1
-          ? "url('/imgs/sprites/onre/onreJumpReverse.gif')"
-          : "url('/imgs/sprites/onre/onreJump.gif')";
+          ? `url('/imgs/sprites/${playerTwo.type}/JumpReverse.gif')`
+          : `url('/imgs/sprites/${playerTwo.type}/Jump.gif')`;
       break;
     case 'ArrowDown':
       playerTwo.playerMeleeAttack();
       playerTwo.sprite.style.backgroundImage =
         playerTwo.directionX === -1
-          ? "url('/imgs/sprites/onre/onreMeleeAttackReverse.gif')"
-          : "url('/imgs/sprites/onre/onreMeleeAttack.gif')";
+          ? `url('/imgs/sprites/${playerTwo.type}/MeleeAttackReverse.gif')`
+          : `url('/imgs/sprites/${playerTwo.type}/MeleeAttack.gif')`;
       playerTwo.sprite.style.backgroundImage =
         playerTwo.previousDirection === -1
-          ? "url('/imgs/sprites/onre/onreMeleeAttackReverse.gif')"
-          : "url('/imgs/sprites/onre/onreMeleeAttack.gif')";
+          ? `url('/imgs/sprites/${playerTwo.type}/MeleeAttackReverse.gif')`
+          : `url('/imgs/sprites/${playerTwo.type}/MeleeAttack.gif')`;
       break;
     case '-':
       if (playerTwo.spellCounter < 1) {
@@ -287,12 +240,12 @@ window.addEventListener('keydown', function (e) {
         playerTwo.playerDistanceAttack();
         playerTwo.sprite.style.backgroundImage =
           playerTwo.directionX === -1
-            ? "url('./imgs/sprites/onre/onreSpellReverse.gif')"
-            : "url('./imgs/sprites/onre/onreSpell.gif')";
+            ? `url('./imgs/sprites/${playerTwo.type}/SpellReverse.gif')`
+            : `url('./imgs/sprites/${playerTwo.type}/Spell.gif')`;
         playerTwo.sprite.style.backgroundImage =
           playerTwo.previousDirection === -1
-            ? "url('./imgs/sprites/onre/onreSpellReverse.gif')"
-            : "url('./imgs/sprites/onre/onreSpell.gif')";
+            ? `url('./imgs/sprites/${playerTwo.type}/SpellReverse.gif')`
+            : `url('./imgs/sprites/${playerTwo.type}/Spell.gif')`;
         break;
       }
   }
@@ -301,72 +254,68 @@ window.addEventListener('keydown', function (e) {
 window.addEventListener('keyup', function (e) {
   if (e.key.toLowerCase() === 'a') {
     playerOne.directionX = 0;
-    playerOne.sprite.style.backgroundImage =
-      "url('/imgs/sprites/yurei/yureiIdleReverse.gif')";
+    playerOne.sprite.style.backgroundImage = `url('/imgs/sprites/${playerOne.type}/IdleReverse.gif')`;
   }
   if (e.key.toLowerCase() === 'd') {
     playerOne.directionX = 0;
-    playerOne.sprite.style.backgroundImage =
-      "url('/imgs/sprites/yurei/yureiIdle.gif')";
+    playerOne.sprite.style.backgroundImage = `url('/imgs/sprites/${playerOne.type}/Idle.gif')`;
   }
   if (e.key.toLowerCase() === 'w') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
-        ? "url('/imgs/sprites/yurei/yureiIdleReverse.gif')"
-        : "url('/imgs/sprites/yurei/yureiIdle.gif')";
+        ? `url('/imgs/sprites/${playerOne.type}/IdleReverse.gif')`
+        : `url('/imgs/sprites/${playerOne.type}/Idle.gif')`;
   }
   if (e.key === ' ') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
-        ? "url('/imgs/sprites/yurei/yureiIdleReverse.gif')"
-        : "url('/imgs/sprites/yurei/yureiIdle.gif')";
+        ? `url('/imgs/sprites/${playerOne.type}/IdleReverse.gif')`
+        : `url('/imgs/sprites/${playerOne.type}/Idle.gif')`;
   }
 
   if (e.key.toLowerCase() === 'f') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
-        ? "url('/imgs/sprites/yurei/yureiIdleReverse.gif')"
-        : "url('/imgs/sprites/yurei/yureiIdle.gif')";
+        ? `url('/imgs/sprites/${playerOne.type}/IdleReverse.gif')`
+        : `url('/imgs/sprites/${playerOne.type}/Idle.gif')`;
   }
 });
 
 window.addEventListener('keyup', function (e) {
   if (e.key === 'ArrowLeft') {
     playerTwo.directionX = 0;
-    playerTwo.sprite.style.backgroundImage =
-      "url('/imgs/sprites/onre/onreIdleReverse.gif')";
+    playerTwo.sprite.style.backgroundImage = `url('/imgs/sprites/${playerTwo.type}/IdleReverse.gif')`;
   }
   if (e.key === 'ArrowRight') {
     playerTwo.directionX = 0;
-    playerTwo.sprite.style.backgroundImage =
-      "url('/imgs/sprites/onre/onreIdle.gif')";
+    playerTwo.sprite.style.backgroundImage = `url('/imgs/sprites/${playerTwo.type}/Idle.gif')`;
   }
 
   if (e.key === 'ArrowUp') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
-        ? "url('/imgs/sprites/onre/onreIdleReverse.gif')"
-        : "url('/imgs/sprites/onre/onreIdle.gif')";
+        ? `url('/imgs/sprites/${playerTwo.type}/IdleReverse.gif')`
+        : `url('/imgs/sprites/${playerTwo.type}/Idle.gif')`;
   }
 
   if (e.key === 'ArrowDown') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
-        ? "url('/imgs/sprites/onre/onreIdleReverse.gif')"
-        : "url('/imgs/sprites/onre/onreIdle.gif')";
+        ? `url('/imgs/sprites/${playerTwo.type}/IdleReverse.gif')`
+        : `url('/imgs/sprites/${playerTwo.type}/Idle.gif')`;
   }
 
   if (e.key === '-') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
-        ? "url('/imgs/sprites/onre/onreIdleReverse.gif')"
-        : "url('/imgs/sprites/onre/onreIdle.gif')";
+        ? `url('/imgs/sprites/${playerTwo.type}/IdleReverse.gif')`
+        : `url('/imgs/sprites/${playerTwo.type}/Idle.gif')`;
   }
 });
 
