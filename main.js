@@ -4,6 +4,8 @@ const canvas = document.getElementById('gameCanvas');
 const gameContainer = document.getElementById('gameContainer');
 const healthBarP1 = document.getElementById('playerOneHB');
 const healthBarP2 = document.getElementById('playerTwoHB');
+let playerOneName = document.getElementById('playerOneName');
+let playerTwoName = document.getElementById('playerTwoName');
 
 // Necessary variables:
 
