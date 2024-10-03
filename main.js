@@ -6,6 +6,11 @@ const healthBarP1 = document.getElementById('playerOneHB');
 const healthBarP2 = document.getElementById('playerTwoHB');
 let playerOneName = document.getElementById('playerOneName');
 let playerTwoName = document.getElementById('playerTwoName');
+const choosePlayerOne = document.getElementById('selectionCharacterScreen');
+const choosePlayerTwo = document.getElementById('selectionCharacterScreen2');
+const firstScreenCharas = document.getElementsByClassName('firstScreenCharas');
+const secondScreenCharas =
+  document.getElementsByClassName('secondScreenCharas');
 
 // Necessary variables:
 
@@ -21,6 +26,7 @@ let selectPlayerTwo = 'kitsune';
 
 let powerUp;
 let healthRecovery;
+let powerUpInterval;
 
 let startButton = document.getElementById('btn-start');
 let restartButton = document.getElementById('btn-restart');
@@ -32,7 +38,7 @@ let restartScreen = document.getElementById('restart');
 function startGame() {
   newHero();
   newAntagonist();
-  setInterval(function () {
+  powerUpInterval = setInterval(function () {
     spawnPowerUp();
   }, 100);
   gameContainer.style.display = 'block';
@@ -45,7 +51,9 @@ function stillAlive() {
   if (playerOne.health > 0 || playerTwo.health > 0) {
     playerOne.moveTheHeroHorizontally();
     playerTwo.moveTheAntagonistHorizontally();
-  } else {
+  }
+
+  if (playerOne.health <= 0 || playerTwo.health <= 0) {
     gameOver();
   }
 }
@@ -112,9 +120,11 @@ function updatePowerUps() {
 
 function gameOver() {
   clearInterval(moveHeroInterval);
-  playerOne.checkingIfTheyDie();
+  playerOne.removeHero();
   clearInterval(moveAntagonistInterval);
-  playerTwo.checkingIfTheyDie();
+  clearInterval(powerUpInterval);
+  playerTwo.removeAntagonist();
+  gameContainer.style.display = 'none';
   restartScreen.style.display = 'block';
 }
 
@@ -129,14 +139,12 @@ function updateTheGame() {
 }
 
 function restartGame() {
-  canvas.innerHTML = '';
-
-  playerOne = null;
-  playerTwo = null;
-  powerUp = null;
-
+  healthBarP1.value = 600;
+  healthBarP2.value = 600;
   clearInterval(moveHeroInterval);
+  clearInterval(powerUpInterval);
   clearInterval(moveAntagonistInterval);
+  window.location.reload();
 }
 
 // Add event listeners for keyboard control:
@@ -322,12 +330,43 @@ window.addEventListener('keyup', function (e) {
 });
 
 startButton.addEventListener('click', function (event) {
-  startGame();
   canvas.style.display = 'block';
   startScreen.style.display = 'none';
+  choosePlayerOne.style.display = 'block';
 });
 
 restartButton.addEventListener('click', function (event) {
   restartGame();
-  startScreen.style.display = 'none';
+  startScreen.style.display = 'block';
+  restartScreen.style.display = 'none';
 });
+
+function addOnClick(array) {
+  let newArray = [...array];
+  newArray.forEach(function (item) {
+    item.addEventListener('click', function () {
+      choosePlayerOne.style.display = 'none';
+      choosePlayerTwo.style.display = 'block';
+      selectPlayerOne = item.getAttribute('name');
+      playerOneName.innerText =
+        selectPlayerOne.charAt(0).toUpperCase() + selectPlayerOne.slice(1);
+    });
+  });
+}
+
+function addOnClickTwo(array) {
+  let newArray = [...array];
+  newArray.forEach(function (item) {
+    item.addEventListener('click', function () {
+      canvas.style.display = 'block';
+      choosePlayerTwo.style.display = 'none';
+      selectPlayerTwo = item.getAttribute('name');
+      playerTwoName.innerText =
+        selectPlayerTwo.charAt(0).toUpperCase() + selectPlayerTwo.slice(1);
+      startGame();
+    });
+  });
+}
+
+addOnClick(firstScreenCharas);
+addOnClickTwo(secondScreenCharas);
