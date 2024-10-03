@@ -103,7 +103,7 @@ function newAntagonist() {
 
 function spawnPowerUp() {
   if (!powerUp && !healthRecovery) {
-    const x = Math.random() * (1750 - 50);
+    const x = Math.random() * (1700 - 5);
     const type = Math.floor(Math.random() * 2);
     if (type === 0) {
       powerUp = new PowerUp(x);
@@ -117,7 +117,7 @@ function updatePowerUps() {
   if (powerUp) {
     powerUp.fall(2);
 
-    if (powerUp.y > 720) {
+    if (powerUp.y > 710) {
       powerUp.sprite.remove();
       powerUp = null;
     } else {
@@ -126,7 +126,7 @@ function updatePowerUps() {
   }
   if (healthRecovery) {
     healthRecovery.fall(2);
-    if (healthRecovery.y > 720) {
+    if (healthRecovery.y > 710) {
       healthRecovery.sprite.remove();
       healthRecovery = null;
     } else {
