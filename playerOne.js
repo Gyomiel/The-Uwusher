@@ -108,12 +108,13 @@ class Hero {
     let spell = new Spell(playerOne);
     spell.sprite.style.backgroundImage =
       playerOne.directionX === -1
-        ? "url('./imgs/assets/spellAnimationReverse.gif')"
-        : "url('./imgs/assets/spellAnimation.gif')";
+        ? "url('./imgs/sprites/yurei/spellAnimationReverse.gif')"
+        : "url('./imgs/sprites/yurei/spellAnimation.gif')";
     spell.sprite.style.backgroundImage =
+    
       playerOne.previousDirection === -1
-        ? "url('./imgs/assets/spellAnimationReverse.gif')"
-        : "url('./imgs/assets/spellAnimation.gif')";
+        ? "url('imgs/sprites/yurei/spellAnimationReverse.gif')"
+        : "url('./imgs/sprites/yurei/spellAnimation.gif')";
     spell.insertSpell();
   }
 

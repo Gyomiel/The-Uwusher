@@ -1,6 +1,7 @@
 // Canvas context through DOM:
 
 const canvas = document.getElementById("gameCanvas");
+const gameContainer = document.getElementById("gameContainer");
 const healthBarP1 = document.getElementById("playerOneHB");
 const healthBarP2 = document.getElementById("playerTwoHB");
 
@@ -30,7 +31,7 @@ function startGame() {
   setInterval(function () {
     spawnPowerUp();
   }, 100);
-
+  gameContainer.style.display = "block";
   updateTheGame();
 }
 
@@ -276,7 +277,7 @@ window.addEventListener("keydown", function (e) {
         playerTwo.previousDirection === -1
           ? "url('/imgs/sprites/onre/onreMeleeAttackReverse.gif')"
           : "url('/imgs/sprites/onre/onreMeleeAttack.gif')";
-          break;
+      break;
     case "-":
       playerTwo.playerDistanceAttack();
       playerTwo.sprite.style.backgroundImage =

@@ -28,8 +28,6 @@ class HealthRecovery {
       this.y + this.height > playerOne.y
     ) {
       if (!this.collided) {
-        console.log(playerOne.health + "hp pl1 ");
-
         playerOne.health < 600 ? (playerOne.health += 100) : null;
         healthBarP1.value += 100;
         this.collided = true;
@@ -47,7 +45,7 @@ class HealthRecovery {
         playerTwo.health < 600 ? (playerTwo.health += 100) : null;
         healthBarP2.value += 100;
         this.collided = true;
-    }
+      }
       this.sprite.remove();
     }
   }

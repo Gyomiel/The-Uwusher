@@ -37,6 +37,7 @@ body {
   margin: 0 auto;
   width: 1700px;
   height: 750px;
+  display: none;
 }
 
 #gameCanvas {
@@ -299,19 +300,33 @@ progress[value]::-moz-progress-bar {
 }
 
 .healthHeart1 {
-  width: 80px;
+  width: 75px;
   display: flex;
   flex-direction: row;
   margin: 0;
   padding: 0;
+  animation: beat 900ms infinite;
 }
 
 .healthHeart2 {
-  width: 80px;
+  width: 75px;
   display: flex;
   flex-direction: row;
   margin: 0;
   padding: 0;
+  animation: beat 900ms infinite;
+}
+
+@keyframes beat {
+  0%, 100% {
+      transform: scale(1);
+  }
+  25%, 75% {
+      transform: scale(1.1);
+  }
+  50% {
+      transform: scale(1.15);
+  }
 }
 
 .barAndChara1 {
@@ -340,6 +355,6 @@ progress[value]::-moz-progress-bar {
 
 .spellCast {
   position: absolute;
-  transform: scale(2.5);
+  transform: scale(2.2);
   background-size: contain;
 }
