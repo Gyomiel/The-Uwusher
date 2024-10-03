@@ -2,8 +2,8 @@ class HealthRecovery {
   constructor(x) {
     this.x = x;
     this.y = 0;
-    this.width = 30;
-    this.height = 30;
+    this.width = 40;
+    this.height = 40;
     this.sprite = document.createElement("div");
     this.collided = false;
     this.sprite.setAttribute("class", "healthRecovery");
@@ -11,7 +11,7 @@ class HealthRecovery {
     this.sprite.style.height = this.height + "px";
     this.sprite.style.left = this.x + "px";
     this.sprite.style.top = this.y + "px";
-    this.sprite.style.backgroundColor = "green";
+    this.sprite.style.backgroundImage = "url('imgs/assets/healthPowerUp.png')";
     canvas.appendChild(this.sprite);
   }
 

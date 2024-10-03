@@ -157,14 +157,14 @@ h2 {
 
 .power-up {
   position: absolute;
-  background-color: yellow;
+  background-size: contain;
   width: 30px;
   height: 30px;
 }
 
 .healthRecovery {
   position: absolute;
-  background-color: green;
+  background-size: contain;
   width: 30px;
   height: 30px;
 }
