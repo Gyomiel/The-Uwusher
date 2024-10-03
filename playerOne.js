@@ -14,6 +14,7 @@ class Hero {
     this.gravity = 1;
     this.isJumping = false;
     this.attacking = false;
+    this.isDead = false;
     this.health = 600;
     this.strength = 100;
     this.spellCounter = 0;
@@ -136,23 +137,23 @@ class Hero {
   }
 
   checkingIfTheyDie() {
-    if (this.health <= 0) {
-      this.deadAudio.play();
+    if (this.health <= 0 && !this.isDead) {
+      this.isDead = true;
       playerOne.sprite.style.backgroundImage =
         playerOne.previousDirection === -1
-          ? `url('./imgs/sprites/${this.type}/DeadReverse.gif')`
-          : `url('./imgs/sprites/${this.type}/Dead.gif')`;
+          ? "url('./imgs/sprites/yurei/yureiDeadReverse.gif')"
+          : "url('./imgs/sprites/yurei/yureiDead.gif')";
       setTimeout(function () {
         playerOne.removeHero();
         playerOne.x = 0;
         playerOne.y = 0;
       }, 900);
-    } else {
+    } else if(!this.isDead) {
       setTimeout(function () {
         playerOne.sprite.style.backgroundImage =
           playerOne.previousDirection === -1
-            ? `url('./imgs/sprites/${playerOne.type}/IdleReverse.gif')`
-            : `url('./imgs/sprites/${playerOne.type}/Idle.gif')`;
+            ? "url('./imgs/sprites/yurei/yureiIdleReverse.gif')"
+            : "url('./imgs/sprites/yurei/yureiIdle.gif')";
       }, 1000);
     }
   }
