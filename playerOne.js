@@ -15,6 +15,7 @@ class Hero {
     this.attacking = false;
     this.health = 600;
     this.strength = 100;
+    this.spellCounter = 0;
     this.sprite = document.createElement("div");
   }
 

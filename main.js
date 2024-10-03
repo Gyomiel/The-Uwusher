@@ -1,9 +1,9 @@
 // Canvas context through DOM:
 
-const canvas = document.getElementById("gameCanvas");
-const gameContainer = document.getElementById("gameContainer");
-const healthBarP1 = document.getElementById("playerOneHB");
-const healthBarP2 = document.getElementById("playerTwoHB");
+const canvas = document.getElementById('gameCanvas');
+const gameContainer = document.getElementById('gameContainer');
+const healthBarP1 = document.getElementById('playerOneHB');
+const healthBarP2 = document.getElementById('playerTwoHB');
 
 // Necessary variables:
 
@@ -18,10 +18,10 @@ let moveAntagonistInterval;
 let powerUp;
 let healthRecovery;
 
-let startButton = document.getElementById("btn-start");
-let restartButton = document.getElementById("btn-restart");
-let startScreen = document.getElementById("start");
-let restartScreen = document.getElementById("restart");
+let startButton = document.getElementById('btn-start');
+let restartButton = document.getElementById('btn-restart');
+let startScreen = document.getElementById('start');
+let restartScreen = document.getElementById('restart');
 
 // Starting the game:
 
@@ -31,7 +31,7 @@ function startGame() {
   setInterval(function () {
     spawnPowerUp();
   }, 100);
-  gameContainer.style.display = "block";
+  gameContainer.style.display = 'block';
   updateTheGame();
 }
 
@@ -156,7 +156,7 @@ function gameOver() {
   playerOne.checkingIfTheyDie();
   clearInterval(moveAntagonistInterval);
   playerTwo.checkingIfTheyDie();
-  restartScreen.style.display = "block";
+  restartScreen.style.display = 'block';
 }
 
 function updateTheGame() {
@@ -170,7 +170,7 @@ function updateTheGame() {
 }
 
 function restartGame() {
-  canvas.innerHTML = "";
+  canvas.innerHTML = '';
 
   playerOne = null;
   playerTwo = null;
@@ -182,9 +182,9 @@ function restartGame() {
 
 // Add event listeners for keyboard control:
 
-window.addEventListener("keydown", function (e) {
+window.addEventListener('keydown', function (e) {
   switch (e.key.toLowerCase()) {
-    case "a":
+    case 'a':
       playerOne.directionX = -1;
       playerOne.previousDirection = -1;
       playerOne.checkCollisions();
@@ -192,7 +192,7 @@ window.addEventListener("keydown", function (e) {
       playerOne.sprite.style.backgroundImage =
         "url('/imgs/sprites/yurei/yureiRunReverse.gif')";
       break;
-    case "d":
+    case 'd':
       playerOne.directionX = 1;
       playerOne.previousDirection = 1;
       playerOne.checkCollisions();
@@ -200,7 +200,7 @@ window.addEventListener("keydown", function (e) {
       playerOne.sprite.style.backgroundImage =
         "url('/imgs/sprites/yurei/yureiRun.gif')";
       break;
-    case "w":
+    case 'w':
       playerOne.checkCollisions();
       playerOne.jumping();
       playerOne.sprite.style.backgroundImage =
@@ -212,7 +212,7 @@ window.addEventListener("keydown", function (e) {
           ? "url('/imgs/sprites/yurei/yureiJumpReverse.gif')"
           : "url('/imgs/sprites/yurei/yureiJump.gif')";
       break;
-    case " ":
+    case ' ':
       playerOne.playerMeleeAttack();
       playerOne.sprite.style.backgroundImage =
         playerOne.directionX === -1
@@ -223,23 +223,26 @@ window.addEventListener("keydown", function (e) {
           ? "url('/imgs/sprites/yurei/yureiMeleeAttackReverse.gif')"
           : "url('/imgs/sprites/yurei/yureiMeleeAttack.gif')";
       break;
-    case "f":
-      playerOne.playerDistanceAttack();
-      playerOne.sprite.style.backgroundImage =
-        playerOne.directionX === -1
-          ? "url('./imgs/sprites/yurei/yureiSpellReverse.gif')"
-          : "url('./imgs/sprites/yurei/yureiSpell.gif')";
-      playerOne.sprite.style.backgroundImage =
-        playerOne.previousDirection === -1
-          ? "url('./imgs/sprites/yurei/yureiSpellReverse.gif')"
-          : "url('./imgs/sprites/yurei/yureiSpell.gif')";
-      break;
+    case 'f':
+      if (playerOne.spellCounter < 1) {
+        playerOne.spellCounter++;
+        playerOne.playerDistanceAttack();
+        playerOne.sprite.style.backgroundImage =
+          playerOne.directionX === -1
+            ? "url('./imgs/sprites/yurei/yureiSpellReverse.gif')"
+            : "url('./imgs/sprites/yurei/yureiSpell.gif')";
+        playerOne.sprite.style.backgroundImage =
+          playerOne.previousDirection === -1
+            ? "url('./imgs/sprites/yurei/yureiSpellReverse.gif')"
+            : "url('./imgs/sprites/yurei/yureiSpell.gif')";
+        break;
+      }
   }
 });
 
-window.addEventListener("keydown", function (e) {
+window.addEventListener('keydown', function (e) {
   switch (e.key) {
-    case "ArrowLeft":
+    case 'ArrowLeft':
       playerTwo.directionX = -1;
       playerTwo.previousDirection = -1;
       playerTwo.checkCollisions();
@@ -247,7 +250,7 @@ window.addEventListener("keydown", function (e) {
       playerTwo.sprite.style.backgroundImage =
         "url('imgs/sprites/onre/onreRunReverse.gif')";
       break;
-    case "ArrowRight":
+    case 'ArrowRight':
       playerTwo.directionX = 1;
       playerTwo.previousDirection = 1;
       playerTwo.checkCollisions();
@@ -255,7 +258,7 @@ window.addEventListener("keydown", function (e) {
       playerTwo.sprite.style.backgroundImage =
         "url('imgs/sprites/onre/onreRun.gif')";
       break;
-    case "ArrowUp":
+    case 'ArrowUp':
       playerTwo.checkCollisions();
       playerTwo.jumping();
       playerTwo.sprite.style.backgroundImage =
@@ -267,7 +270,7 @@ window.addEventListener("keydown", function (e) {
           ? "url('/imgs/sprites/onre/onreJumpReverse.gif')"
           : "url('/imgs/sprites/onre/onreJump.gif')";
       break;
-    case "ArrowDown":
+    case 'ArrowDown':
       playerTwo.playerMeleeAttack();
       playerTwo.sprite.style.backgroundImage =
         playerTwo.directionX === -1
@@ -278,39 +281,42 @@ window.addEventListener("keydown", function (e) {
           ? "url('/imgs/sprites/onre/onreMeleeAttackReverse.gif')"
           : "url('/imgs/sprites/onre/onreMeleeAttack.gif')";
       break;
-    case "-":
-      playerTwo.playerDistanceAttack();
-      playerTwo.sprite.style.backgroundImage =
-        playerTwo.directionX === -1
-          ? "url('./imgs/sprites/onre/onreSpellReverse.gif')"
-          : "url('./imgs/sprites/onre/onreSpell.gif')";
-      playerTwo.sprite.style.backgroundImage =
-        playerTwo.previousDirection === -1
-          ? "url('./imgs/sprites/onre/onreSpellReverse.gif')"
-          : "url('./imgs/sprites/onre/onreSpell.gif')";
-      break;
+    case '-':
+      if (playerTwo.spellCounter < 1) {
+        playerTwo.spellCounter++;
+        playerTwo.playerDistanceAttack();
+        playerTwo.sprite.style.backgroundImage =
+          playerTwo.directionX === -1
+            ? "url('./imgs/sprites/onre/onreSpellReverse.gif')"
+            : "url('./imgs/sprites/onre/onreSpell.gif')";
+        playerTwo.sprite.style.backgroundImage =
+          playerTwo.previousDirection === -1
+            ? "url('./imgs/sprites/onre/onreSpellReverse.gif')"
+            : "url('./imgs/sprites/onre/onreSpell.gif')";
+        break;
+      }
   }
 });
 
-window.addEventListener("keyup", function (e) {
-  if (e.key.toLowerCase() === "a") {
+window.addEventListener('keyup', function (e) {
+  if (e.key.toLowerCase() === 'a') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       "url('/imgs/sprites/yurei/yureiIdleReverse.gif')";
   }
-  if (e.key.toLowerCase() === "d") {
+  if (e.key.toLowerCase() === 'd') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       "url('/imgs/sprites/yurei/yureiIdle.gif')";
   }
-  if (e.key.toLowerCase() === "w") {
+  if (e.key.toLowerCase() === 'w') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
         ? "url('/imgs/sprites/yurei/yureiIdleReverse.gif')"
         : "url('/imgs/sprites/yurei/yureiIdle.gif')";
   }
-  if (e.key === " ") {
+  if (e.key === ' ') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
@@ -318,7 +324,7 @@ window.addEventListener("keyup", function (e) {
         : "url('/imgs/sprites/yurei/yureiIdle.gif')";
   }
 
-  if (e.key.toLowerCase() === "f") {
+  if (e.key.toLowerCase() === 'f') {
     playerOne.directionX = 0;
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
@@ -327,19 +333,19 @@ window.addEventListener("keyup", function (e) {
   }
 });
 
-window.addEventListener("keyup", function (e) {
-  if (e.key === "ArrowLeft") {
+window.addEventListener('keyup', function (e) {
+  if (e.key === 'ArrowLeft') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       "url('/imgs/sprites/onre/onreIdleReverse.gif')";
   }
-  if (e.key === "ArrowRight") {
+  if (e.key === 'ArrowRight') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       "url('/imgs/sprites/onre/onreIdle.gif')";
   }
 
-  if (e.key === "ArrowUp") {
+  if (e.key === 'ArrowUp') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
@@ -347,7 +353,7 @@ window.addEventListener("keyup", function (e) {
         : "url('/imgs/sprites/onre/onreIdle.gif')";
   }
 
-  if (e.key === "ArrowDown") {
+  if (e.key === 'ArrowDown') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
@@ -355,7 +361,7 @@ window.addEventListener("keyup", function (e) {
         : "url('/imgs/sprites/onre/onreIdle.gif')";
   }
 
-  if (e.key === "-") {
+  if (e.key === '-') {
     playerTwo.directionX = 0;
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
@@ -364,13 +370,13 @@ window.addEventListener("keyup", function (e) {
   }
 });
 
-startButton.addEventListener("click", function (event) {
+startButton.addEventListener('click', function (event) {
   startGame();
-  canvas.style.display = "block";
-  startScreen.style.display = "none";
+  canvas.style.display = 'block';
+  startScreen.style.display = 'none';
 });
 
-restartButton.addEventListener("click", function (event) {
+restartButton.addEventListener('click', function (event) {
   restartGame();
-  startScreen.style.display = "none";
+  startScreen.style.display = 'none';
 });

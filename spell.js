@@ -3,7 +3,7 @@ class Spell {
     this.player = player;
     this.width = 30;
     this.height = 30;
-    this.dmg = 150;
+    this.dmg = player.strength;
     this.x = this.player.x + this.player.width / 2 + this.width / 2;
     this.y = this.player.y + this.height * 3;
     this.directionX = this.player.previousDirection;
@@ -28,14 +28,15 @@ class Spell {
   }
 
   removeSpell() {
+    this.player.spellCounter--;
     canvas.removeChild(this.sprite);
     clearInterval(this.castInterval);
   }
 
   spellMovement() {
     let newX = this.x + this.speed * this.directionX;
-    this.checkCollisions(this)
-  
+    this.checkCollisions(this);
+
     if (newX >= 0 && newX <= 1700 - this.width) {
       this.x = newX;
       this.sprite.style.left = this.x + 'px';
@@ -49,12 +50,16 @@ class Spell {
       (playerFromArray) => playerFromArray !== this.player
     )[0];
 
-    if (self.x + self.width >= player.x && self.x < player.x + player.width && self.y >= player.y && self.y + self.height <= player.y + player.height) {
+    if (
+      self.x + self.width >= player.x &&
+      self.x < player.x + player.width &&
+      self.y >= player.y &&
+      self.y + self.height <= player.y + player.height
+    ) {
       this.removeSpell();
       player.receiveDamage(this.dmg);
       return true;
     }
     return false;
   }
-
 }
