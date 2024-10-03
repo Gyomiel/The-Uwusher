@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
+@font-face {
+  font-family: 'youMurdererBB';
+  src: url('/font/youmurdererbb_reg.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +33,20 @@
   100% {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8), 0 0 10px #fdfcff,
       0 0 20px #fdfcff;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -80,7 +101,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  display: block;
+  position: relative;
 }
 
 .firstContainer {
@@ -94,15 +115,27 @@ body {
 
 h2 {
   text-align: center;
-  margin: 30px 500px;
+  margin: 0px 500px;
   padding: 10px;
   font-family: 'Creepster', cursive;
   font-size: 64px;
-  color: black;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-  text-align: center;
+  color: white;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
   letter-spacing: 2px;
   animation: pulse 2s infinite;
+}
+
+h4 {
+  text-align: center;
+  font-family: 'Pixelify Sans';
+  font-size: 25px;
+  letter-spacing: 2px;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+  animation: pulse 2s infinite;
+  position: relative;
+  color: white;
+  top: 17%;
+  left: 0.4%;
 }
 
 .thirdContainer {
@@ -117,35 +150,210 @@ h2 {
   height: 100%;
 }
 
-#selectCharacter1 {
-  display: inline-block;
-  width: 30%;
-  height: 95%;
-  margin: 10px 10px 10px 150px;
-  border-radius: 10px;
-  background-image: url('./imgs/characters/YureiChibi.png');
+/*Character selection part 2*/
+
+#selectionCharacterScreen2 {
+  margin-bottom: 10px;
+  width: 1700px;
+  height: 750px;
+  margin: 0 auto;
+  position: relative;
+  background-image: url('/imgs/map/selectScreenBG.png');
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: block;
+}
+
+.firstContainer2 {
+  height: 745px;
+}
+
+.secondContainer2 {
+  padding: 10px;
+  height: 740px;
+}
+
+#secondTitle {
+  text-align: center;
+  margin: 0px 500px;
+  padding: 10px;
+  font-family: 'Creepster', cursive;
+  font-size: 64px;
+  color: white;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+  animation: pulse 2s infinite;
+  position: relative;
+}
+
+#secondChoose {
+  text-align: center;
+  font-family: 'Pixelify Sans';
+  font-size: 25px;
+  letter-spacing: 2px;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+  animation: pulse 2s infinite;
+  position: relative;
+  color: white;
+  top: 17%;
+  left: 0.4%;
+
+}
+
+.thirdContainer2 {
+  margin-right: 10px;
+  padding: 10px;
+  height: 600px;
+}
+
+#characterSelectionSecond {
+  height: 400px;
+  padding: 10px;
+  height: 100%;
+}
+
+/* SELECTION OF FIGHTER */
+
+#selectCharacter1 {
+  display: inline-block;
+  width: 20%;
+  height: 250px;
+  margin: 10px 10px 10px 150px;
+  border-radius: 10px;
+  background-image: url('./imgs/characters/karasu.gif');
+  background-repeat: no-repeat;
   transition: box-shadow 1s ease-in-out;
+  transform: scale(1.5);
+  position: absolute;
+  top: 25%;
+  left: 0%;
+  filter: drop-shadow(10px 10px 5px rgb(29, 28, 28));
+
 }
 
 #selectCharacter2 {
   display: inline-block;
-  width: 30%;
-  height: 95%;
+  width: 20%;
+  height: 250px;
   margin: 10px 10px 10px 400px;
   border-radius: 10px;
-  background-image: url('./imgs/characters/OnreChibi.png');
-  background-size: 100%;
+  background-image: url('/imgs/characters/kitsune.gif');
+  background-size: auto;
   background-repeat: no-repeat;
   transition: box-shadow 1s ease-in-out;
+  transform: scale(1.2);
+  position: absolute;
+  top: 27%;
+  left: 4%;
+  filter: drop-shadow(10px 10px 5px rgb(29, 28, 28));
 }
 
-/*hover of character selection*/
+#selectCharacter3 {
+  display: inline-block;
+  width: 20%;
+  height: 250px;
+  margin: 10px 10px 10px 400px;
+  border-radius: 10px;
+  background-image: url('/imgs/characters/onre.gif');
+  background-repeat: no-repeat;
+  transition: box-shadow 1s ease-in-out;
+  transform: scale(1.2);
+  position: absolute;
+  top: 14%;
+  left: 48%;
+  filter: drop-shadow(10px 10px 5px rgb(29, 28, 28));
+}
+
+#selectCharacter4 {
+  display: inline-block;
+  width: 20%;
+  height: 250px;
+  margin: 10px 10px 10px 400px;
+  border-radius: 10px;
+  background-image: url('/imgs/characters/yurei.gif');
+  background-size: auto;
+  background-repeat: no-repeat;
+  transition: box-shadow 1s ease-in-out;
+  transform: scale(1.5);
+  position: absolute;
+  top: 16%;
+  left: 64%;
+  filter: drop-shadow(10px 10px 5px rgb(29, 28, 28));
+}
+
+#selectCharacter5 {
+
+  width: 20%;
+  height: 250px;
+  margin: 10px 10px 10px 150px;
+  border-radius: 10px;
+  background-image: url('./imgs/characters/karasu.gif');
+  background-repeat: no-repeat;
+  transition: box-shadow 1s ease-in-out;
+  transform: scale(1.5);
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  filter: drop-shadow(5px 5px 10px rgb(29, 28, 28));
+}
+
+#selectCharacter6 {
+
+  width: 20%;
+  height: 250px;
+  margin: 10px 10px 10px 400px;
+  border-radius: 10px;
+  background-image: url('/imgs/characters/kitsune.gif');
+  background-size: auto;
+  background-repeat: no-repeat;
+  transition: box-shadow 1s ease-in-out;
+  transform: scale(1.2);
+  position: absolute;
+  top: 26.5%;
+  left: 4%;
+  filter: drop-shadow(10px 10px 5px rgb(29, 28, 28));
+}
+
+#selectCharacter7 {
+
+  width: 20%;
+  height: 250px;
+  margin: 10px 10px 10px 400px;
+  border-radius: 10px;
+  background-image: url('/imgs/characters/onre.gif');
+  background-repeat: no-repeat;
+  transition: box-shadow 1s ease-in-out;
+  transform: scale(1.1);
+  position: absolute;
+  top: 15%;
+  left: 47%;
+  filter: drop-shadow(10px 10px 5px rgb(29, 28, 28));
+}
+
+#selectCharacter8 {
+
+  width: 20%;
+  height: 250px;
+  margin: 10px 10px 10px 400px;
+  border-radius: 10px;
+  background-image: url('/imgs/characters/yurei.gif');
+  background-size: auto;
+  background-repeat: no-repeat;
+  transition: box-shadow 1s ease-in-out;
+  transform: scale(1.5);
+  position: absolute;
+  top: 15%;
+  left: 64%;
+  filter: drop-shadow(10px 10px 5px rgb(29, 28, 28));
+}
+
+/* hover of character selection */
 
 #selectCharacter1:hover {
   border-color: white;
-  transform: scale(1.1);
+  transform: scale(1.8);
   transition: border-color 1s ease, transform 1s ease;
   /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
   animation: pulse 3s infinite;*/
@@ -153,11 +361,60 @@ h2 {
 
 #selectCharacter2:hover {
   border-color: white;
-  transform: scale(1.1);
+  transform: scale(1.4);
   transition: border-color 1s ease, transform 1s ease;
   /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
   animation: pulse 3s infinite;*/
 }
+
+#selectCharacter3:hover {
+  border-color: white;
+  transform: scale(1.4);
+  transition: border-color 1s ease, transform 1s ease;
+  /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  animation: pulse 3s infinite;*/
+}
+
+#selectCharacter4:hover {
+  border-color: white;
+  transform: scale(1.8);
+  transition: border-color 1s ease, transform 1s ease;
+  /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  animation: pulse 3s infinite;*/
+}
+
+#selectCharacter5:hover {
+  border-color: white;
+  transform: scale(1.8);
+  transition: border-color 1s ease, transform 1s ease;
+  /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  animation: pulse 3s infinite;*/
+}
+
+#selectCharacter6:hover {
+  border-color: white;
+  transform: scale(1.4);
+  transition: border-color 1s ease, transform 1s ease;
+  /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  animation: pulse 3s infinite;*/
+}
+
+#selectCharacter7:hover {
+  border-color: white;
+  transform: scale(1.4);
+  transition: border-color 1s ease, transform 1s ease;
+  /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  animation: pulse 3s infinite;*/
+}
+
+#selectCharacter8:hover {
+  border-color: white;
+  transform: scale(1.8);
+  transition: border-color 1s ease, transform 1s ease;
+  /*box-shadow: 0 4px 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  animation: pulse 3s infinite;*/
+}
+
 
 .power-up {
   position: absolute;
@@ -185,6 +442,42 @@ h2 {
   display: block;
 }
 
+h1 {
+  font-family: 'youMurdererBB';
+  color: #fdfcff;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+  font-size: 100px;
+  text-align: center;
+  position: relative;
+  top: 40%;
+  left: 2%;
+  z-index: 1;
+}
+
+h3 {
+  font-family: 'youMurdererBB';
+  color: #fdfcff;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+  font-size: 40px;
+  text-align: center;
+  position: relative;
+  top: 40%;
+  left: 2%;
+  z-index: 1;
+}
+
+#overlayStart {
+  position: absolute;
+  width: 1700px;
+  height: 750px;
+  opacity: 50%;
+  pointer-events: none;
+  background-size: cover;
+  z-index: 1;
+}
+
 #restart {
   width: 1700px;
   height: 750px;
@@ -195,21 +488,28 @@ h2 {
 }
 
 #btn-start {
+  background-color: #5ccbbb;
+  color: black;
+  font-weight: bold;
+  font-size: large;
+  text-align: center;
   width: 200px;
-  padding: 15px;
+  height: 60px;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 45.5%;
+  top: 75%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  font-family: 'Press Start 2P', sans-serif;
+  animation: pulse 1s infinite;
+  z-index: 3;
 }
 
-#btn-restart {
-  width: 200px;
-  padding: 15px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+#btn-start:hover {
+  transition: padding 0.3s ease-in-out;
+  background-color: #675aa0;
+  cursor: pointer;
 }
 
 /* Sprite animations */

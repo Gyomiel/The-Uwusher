@@ -1,76 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"
-      rel="stylesheet" />
-    <title>👹 Yōkai Fighter | 妖怪ファイター 👺</title>
-  </head>
 
-  <body>
-    <div id="start">
-      <button id="btn-start">Start Game<br />UwU</button>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet" />
+  <title>👹 Yōkai Fighter | 妖怪ファイター 👺</title>
+</head>
 
-    <section id="selectionCharacterScreen">
-      <div class="firstContainer">
-        <div class="secondContainer">
-          <h2>SELECT CHARACTER</h2>
-          <div class="thirdContainer">
-            <div id="characterSelection">
-              <span>
-                <div id="selectCharacter1"></div>
-              </span>
-              <span>
-                <div id="selectCharacter2"></div>
-              </span>
-            </div>
+<body>
+  <div id="start">
+    <img src="./imgs/overlay/playstart.gif" id="overlayStart">
+    <h1>Youkai Fighter</h1>
+    <h3>妖怪ファイター</h3>
+    <button id="btn-start">START GAME<br />スタート</button>
+  </div>
+
+  <section id="selectionCharacterScreen">
+    <div class="firstContainer">
+      <div class="secondContainer">
+        <h2>CHOOSE YOUR FIGHTER</h2>
+        <h4>PLAYER ONE</h4>
+        <div class="thirdContainer">
+          <div id="characterSelection">
+            <span>
+              <div id="selectCharacter1"></div>
+            </span>
+            <span>
+              <div id="selectCharacter2"></div>
+            </span>
+            <span>
+              <div id="selectCharacter3"></div>
+            </span>
+            <span>
+              <div id="selectCharacter4"></div>
+            </span>
           </div>
         </div>
       </div>
-    </section>
-    <div id="gameContainer">
-      <img src="./imgs/overlay/overlay.gif" id="overlayGif" />
+    </div>
+  </section>
 
-      <div id="gameCanvas">
-        <div id="healthBars">
-          <div id="firstPlayerHB">
-            <img class="healthHeart1" src="./imgs/assets/heartHealth.png" />
-            <div class="barAndChara1">
-              <span id="playerOneName">Yurei</span>
-              <progress id="playerOneHB" value="600" max="600"></progress>
-            </div>
-          </div>
-          <div id="secondPlayerHB">
-            <div class="barAndChara2">
-              <span id="playerTwoName">Onre</span>
-              <progress id="playerTwoHB" value="600" max="600"></progress>
-            </div>
-            <img class="healthHeart2" src="./imgs/assets/heartHealth.png" />
-
-            <div id="restart">
-              <button id="btn-restart">Restart Game<br />UwU</button>
-            </div>
+  <section id="selectionCharacterScreen2">
+    <div class="firstContainer2">
+      <div class="secondContainer2">
+        <h2 id="secondTitle">CHOOSE YOUR FIGHTER</h2>
+        <h4 id="secondChoose">PLAYER TWO</h4>
+        <div class="thirdContainer2">
+          <div id="characterSelectionSecond">
+            <span>
+              <div id="selectCharacter5"></div>
+            </span>
+            <span>
+              <div id="selectCharacter6"></div>
+            </span>
+            <span>
+              <div id="selectCharacter7"></div>
+            </span>
+            <span>
+              <div id="selectCharacter8"></div>
+            </span>
           </div>
         </div>
       </div>
-      <div class="yureiIdle"></div>
     </div>
+  </section>
+  <div id="gameContainer">
+    <img src="./imgs/overlay/overlay.gif" id="overlayGif" />
 
-    <audio id="healthPU" src="/sounds/healthPowerUp.wav" type="audio/mp3"></audio>
-    <audio id="strengthPU" src="/sounds/strengthPowerUp.wav" type="audio/mp3"></audio>
-    <audio id="karasuAttack" src="/imgs/sprites/karasu/AttackSound.mp3"></audio>
-  
-    <script src="main.js" defer></script>
-    <script src="playerOne.js"></script>
-    <script src="playerTwo.js"></script>
-    <script src="healthRecovery.js"></script>
-    <script src="spell.js"></script>
-    <script src="powerUp.js"></script>
-  </body>
+    <div id="gameCanvas">
+      <div id="healthBars">
+        <div id="firstPlayerHB">
+          <img class="healthHeart1" src="./imgs/assets/heartHealth.png" />
+          <div class="barAndChara1">
+            <span id="playerOneName">Yurei</span>
+            <progress id="playerOneHB" value="600" max="600"></progress>
+          </div>
+        </div>
+        <div id="secondPlayerHB">
+          <div class="barAndChara2">
+            <span id="playerTwoName">Onre</span>
+            <progress id="playerTwoHB" value="600" max="600"></progress>
+          </div>
+          <img class="healthHeart2" src="./imgs/assets/heartHealth.png" />
+
+          <div id="restart">
+            <button id="btn-restart">Restart Game<br />UwU</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="yureiIdle"></div>
+  </div>
+
+  <audio id="healthPU" src="/sounds/healthPowerUp.wav" type="audio/mp3"></audio>
+  <audio id="strengthPU" src="/sounds/strengthPowerUp.wav" type="audio/mp3"></audio>
+  <audio id="karasuAttack" src="/imgs/sprites/karasu/AttackSound.mp3"></audio>
+
+  <script src="main.js" defer></script>
+  <script src="playerOne.js"></script>
+  <script src="playerTwo.js"></script>
+  <script src="healthRecovery.js"></script>
+  <script src="spell.js"></script>
+  <script src="powerUp.js"></script>
+</body>
+
 </html>
