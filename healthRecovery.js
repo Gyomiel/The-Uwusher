@@ -1,23 +1,25 @@
+const healthRecoverySound = document.getElementById('healthPU');
+
 class HealthRecovery {
   constructor(x) {
     this.x = x;
     this.y = 0;
     this.width = 40;
     this.height = 40;
-    this.sprite = document.createElement("div");
+    this.sprite = document.createElement('div');
     this.collided = false;
-    this.sprite.setAttribute("class", "healthRecovery");
-    this.sprite.style.width = this.width + "px";
-    this.sprite.style.height = this.height + "px";
-    this.sprite.style.left = this.x + "px";
-    this.sprite.style.top = this.y + "px";
+    this.sprite.setAttribute('class', 'healthRecovery');
+    this.sprite.style.width = this.width + 'px';
+    this.sprite.style.height = this.height + 'px';
+    this.sprite.style.left = this.x + 'px';
+    this.sprite.style.top = this.y + 'px';
     this.sprite.style.backgroundImage = "url('imgs/assets/healthPowerUp.png')";
     canvas.appendChild(this.sprite);
   }
 
   fall(speed) {
     this.y += speed;
-    this.sprite.style.top = this.y + "px";
+    this.sprite.style.top = this.y + 'px';
   }
 
   checkCollisions() {
@@ -31,6 +33,7 @@ class HealthRecovery {
         playerOne.health < 600 ? (playerOne.health += 100) : null;
         healthBarP1.value += 100;
         this.collided = true;
+        healthRecoverySound.play();
       }
       this.sprite.remove();
     }
@@ -45,6 +48,7 @@ class HealthRecovery {
         playerTwo.health < 600 ? (playerTwo.health += 100) : null;
         healthBarP2.value += 100;
         this.collided = true;
+        healthRecoverySound.play();
       }
       this.sprite.remove();
     }

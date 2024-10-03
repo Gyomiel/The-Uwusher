@@ -17,6 +17,8 @@ class Hero {
     this.health = 600;
     this.strength = 100;
     this.spellCounter = 0;
+    this.attackAudio = new Audio(`/imgs/sprites/${type}/AttackSound.mp3`)
+    this.hurtAudio = new Audio(`/imgs/sprites/${type}/HurtSound.mp3`);
     this.sprite = document.createElement('div');
   }
 
@@ -88,7 +90,7 @@ class Hero {
   playerMeleeAttack() {
     let previousWidth = this.width;
     let previousX = this.x;
-
+    this.attackAudio.play();
     if (this.previousDirection === 1) {
       this.width += this.width / 2;
       if (this.checkCollisions()) {
@@ -122,6 +124,7 @@ class Hero {
   receiveDamage(dmg) {
     healthBarP1.value -= dmg;
     this.health -= dmg;
+    this.hurtAudio.play()
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
         ? `url('./imgs/sprites/${this.type}/HurtReverse.gif')`

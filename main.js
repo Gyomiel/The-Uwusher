@@ -53,7 +53,7 @@ function stillAlive() {
 // Inserting the hero (player one):
 
 function newHero() {
-  playerOne = new Hero(20, 400, selectPlayerOne);
+  playerOne = new Hero(20, 400, 'karasu');
   playerOne.insertHero();
   playersArray.push(playerOne);
   moveHeroInterval = setInterval(function () {

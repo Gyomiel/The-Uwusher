@@ -1,3 +1,5 @@
+const strengthGainSound = document.getElementById('strengthPU');
+
 class PowerUp {
   constructor(x) {
     this.x = x;
@@ -30,6 +32,7 @@ class PowerUp {
       if (!this.collided) {
         playerOne.strength *= 2;
         this.collided = true;
+        strengthGainSound.play();
       }
       this.sprite.remove();
     }
@@ -43,6 +46,8 @@ class PowerUp {
       if (!this.collided) {
         playerTwo.strength *= 2;
         this.collided = true;
+        strengthGainSound.play();
+
       }
       this.sprite.remove();
     }

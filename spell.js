@@ -10,12 +10,15 @@ class Spell {
     this.speed = 20;
     this.castInterval = setInterval(this.spellMovement.bind(this), 30);
     this.sprite = document.createElement('div');
+    this.audio = new Audio(`/imgs/sprites/${player.type}/spellAnimationSound.mp3`)
   }
 
   insertSpell() {
     this.sprite.setAttribute('class', 'spellCast');
     this.sprite.style.width = this.width + 'px';
     this.sprite.style.height = this.height + 'px';
+    this.audio.play();
+
     if (this.player.previousDirection === 1) {
       this.sprite.style.top = this.y + 'px';
       this.sprite.style.left = this.x + 'px';
@@ -31,6 +34,7 @@ class Spell {
     this.player.spellCounter--;
     canvas.removeChild(this.sprite);
     clearInterval(this.castInterval);
+    this.audio.pause();
   }
 
   spellMovement() {
