@@ -14,6 +14,7 @@ class Antagonist {
     this.gravity = 1;
     this.isJumping = false;
     this.attacking = false;
+    this.isDead = false;
     this.health = 600;
     this.strength = 100;
     this.spellCounter = 0;
@@ -137,23 +138,23 @@ class Antagonist {
   }
 
   checkingIfTheyDie() {
-    if (this.health <= 0) {
-      this.deadAudio.play();
+    if (this.health <= 0 && !this.isDead) {
+      this.isDead = true
       playerTwo.sprite.style.backgroundImage =
         playerTwo.previousDirection === -1
-          ? `url('./imgs/sprites/${this.type}/DeadReverse.gif')`
-          : `url('./imgs/sprites/${this.type}/Dead.gif')`;
-      setTimeout(() => {
+          ? "url('./imgs/sprites/onre/onreDeadReverse.gif')"
+          : "url('./imgs/sprites/onre/onreDead.gif')";
+      setTimeout(function () {
+        playerTwo.removeAntagonist();
         playerTwo.x = 0;
         playerTwo.y = 0;
-        playerTwo.removeAntagonist();
-      }, 500);
-    } else if (playerTwo.health > 0) {
+      }, 900);
+    } else if(!this.isDead){
       setTimeout(function () {
         playerTwo.sprite.style.backgroundImage =
           playerTwo.previousDirection === -1
-            ? `url('./imgs/sprites/${playerTwo.type}/IdleReverse.gif')`
-            : `url('./imgs/sprites/${playerTwo.type}/Idle.gif')`;
+            ? "url('./imgs/sprites/onre/onreIdleReverse.gif')"
+            : "url('./imgs/sprites/onre/onreIdle.gif')";
       }, 1000);
     }
   }

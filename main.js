@@ -42,7 +42,7 @@ function startGame() {
 // If the characters are still alive, the game goes on:
 
 function stillAlive() {
-  if (playerOne.health > 0 || playerTwo.health > 0) {
+  if (playerOne.health > 0 && playerTwo.health > 0) {
     playerOne.moveTheHeroHorizontally();
     playerTwo.moveTheAntagonistHorizontally();
   } else {
@@ -115,6 +115,8 @@ function gameOver() {
   playerOne.checkingIfTheyDie();
   clearInterval(moveAntagonistInterval);
   playerTwo.checkingIfTheyDie();
+
+  canvas.style.display = 'none';
   restartScreen.style.display = 'block';
 }
 
@@ -129,14 +131,24 @@ function updateTheGame() {
 }
 
 function restartGame() {
-  canvas.innerHTML = '';
 
+  if (playerOne && playerOne.sprite) {
+    playerOne.sprite.remove(); 
+  }
+  if (playerTwo && playerTwo.sprite) {
+    playerTwo.sprite.remove();  
+  }
+  
   playerOne = null;
   playerTwo = null;
   powerUp = null;
 
   clearInterval(moveHeroInterval);
   clearInterval(moveAntagonistInterval);
+
+  document.getElementById('playerOneHB').value = 600; 
+  document.getElementById('playerTwoHB').value = 600; 
+
 }
 
 // Add event listeners for keyboard control:
@@ -329,5 +341,6 @@ startButton.addEventListener('click', function (event) {
 
 restartButton.addEventListener('click', function (event) {
   restartGame();
-  startScreen.style.display = 'none';
+  startScreen.style.display = 'block';
+  restartScreen.style.display = 'none'
 });
