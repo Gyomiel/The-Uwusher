@@ -9,23 +9,25 @@ class Spell {
     this.directionX = this.player.previousDirection;
     this.speed = 20;
     this.castInterval = setInterval(this.spellMovement.bind(this), 30);
-    this.sprite = document.createElement('div');
-    this.audio = new Audio(`/imgs/sprites/${player.type}/spellAnimationSound.mp3`)
+    this.sprite = document.createElement("div");
+    this.audio = new Audio(
+      `/imgs/sprites/${player.type}/spellAnimationSound.mp3`
+    );
   }
 
   insertSpell() {
-    this.sprite.setAttribute('class', 'spellCast');
-    this.sprite.style.width = this.width + 'px';
-    this.sprite.style.height = this.height + 'px';
+    this.sprite.setAttribute("class", "spellCast");
+    this.sprite.style.width = this.width + "px";
+    this.sprite.style.height = this.height + "px";
     this.audio.play();
 
     if (this.player.previousDirection === 1) {
-      this.sprite.style.top = this.y + 'px';
-      this.sprite.style.left = this.x + 'px';
+      this.sprite.style.top = this.y + "px";
+      this.sprite.style.left = this.x + "px";
     } else if (this.player.previousDirection === -1) {
       this.x = this.player.x - this.width / 2;
-      this.sprite.style.top = this.y + 'px';
-      this.sprite.style.left = this.x + 'px';
+      this.sprite.style.top = this.y + "px";
+      this.sprite.style.left = this.x + "px";
     }
     canvas.appendChild(this.sprite);
   }
@@ -40,10 +42,9 @@ class Spell {
   spellMovement() {
     let newX = this.x + this.speed * this.directionX;
     this.checkCollisions(this);
-
     if (newX >= 0 && newX <= 1700 - this.width) {
       this.x = newX;
-      this.sprite.style.left = this.x + 'px';
+      this.sprite.style.left = this.x + "px";
     } else {
       this.removeSpell();
     }

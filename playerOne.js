@@ -7,7 +7,7 @@ class Hero {
     this.height = 150;
     this.directionX = 0;
     this.directionY = 0;
-    this.previousDirection = 0;
+    this.previousDirection = 1;
     this.speedX = 2;
     this.speedY = 0;
     this.jumpStrength = -22;
