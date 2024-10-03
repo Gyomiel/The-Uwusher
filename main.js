@@ -13,7 +13,7 @@ let playersArray = [];
 
 let playerOne;
 let moveHeroInterval;
-let selectPlayerOne = 'yurei';
+let selectPlayerOne = 'onre';
 
 let playerTwo;
 let moveAntagonistInterval;
