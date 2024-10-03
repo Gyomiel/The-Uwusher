@@ -17,7 +17,7 @@ let selectPlayerOne = 'yurei';
 
 let playerTwo;
 let moveAntagonistInterval;
-let selectPlayerTwo = 'onre';
+let selectPlayerTwo = 'kitsune';
 
 let powerUp;
 let healthRecovery;
@@ -53,7 +53,7 @@ function stillAlive() {
 // Inserting the hero (player one):
 
 function newHero() {
-  playerOne = new Hero(20, 400, 'karasu');
+  playerOne = new Hero(20, 400, selectPlayerOne);
   playerOne.insertHero();
   playersArray.push(playerOne);
   moveHeroInterval = setInterval(function () {

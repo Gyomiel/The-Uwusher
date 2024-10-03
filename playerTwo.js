@@ -2,7 +2,7 @@ class Antagonist {
   constructor(x, y, type) {
     this.x = x;
     this.y = y;
-    this.type = type
+    this.type = type;
     this.width = 80;
     this.height = 150;
     this.directionX = 0;
@@ -17,18 +17,21 @@ class Antagonist {
     this.health = 600;
     this.strength = 100;
     this.spellCounter = 0;
-    this.sprite = document.createElement("div");
+    this.attackAudio = new Audio(`/imgs/sprites/${type}/AttackSound.mp3`);
+    this.hurtAudio = new Audio(`/imgs/sprites/${type}/HurtSound.mp3`);
+    this.jumpAudio = new Audio(`/imgs/sprites/${type}/JumpSound.mp3`);
+    this.deadAudio = new Audio(`/imgs/sprites/${type}/DeadSound.mp3`);
+    this.sprite = document.createElement('div');
   }
 
   insertAntagonist() {
-    this.sprite.setAttribute("id", "antagonistContainer");
-    this.sprite.setAttribute("class", this.type);
-    this.sprite.style.width = this.width + "px";
-    this.sprite.style.height = this.height + "px";
-    this.sprite.style.top = this.y + "px";
-    this.sprite.style.left = this.x + "px";
-    this.sprite.style.backgroundImage =
-      `url('./imgs/sprites/${this.type}/IdleReverse.gif')`;
+    this.sprite.setAttribute('id', 'antagonistContainer');
+    this.sprite.setAttribute('class', this.type);
+    this.sprite.style.width = this.width + 'px';
+    this.sprite.style.height = this.height + 'px';
+    this.sprite.style.top = this.y + 'px';
+    this.sprite.style.left = this.x + 'px';
+    this.sprite.style.backgroundImage = `url('./imgs/sprites/${this.type}/IdleReverse.gif')`;
     canvas.appendChild(this.sprite);
   }
 
@@ -42,7 +45,7 @@ class Antagonist {
     this.checkCollisions();
     if (xAxis >= 0 && xAxis <= 1700 - this.width && !this.checkCollisions()) {
       this.x = xAxis;
-      this.sprite.style.left = this.x + "px";
+      this.sprite.style.left = this.x + 'px';
     }
 
     if (xAxis >= 0 && xAxis <= 1700 - this.width && this.checkCollisions()) {
@@ -51,7 +54,7 @@ class Antagonist {
         xAxis + this.bounceBack() <= 1700 - this.width
       ) {
         this.x = xAxis + this.bounceBack();
-        this.sprite.style.left = this.x + "px";
+        this.sprite.style.left = this.x + 'px';
       }
     }
   }
@@ -71,6 +74,7 @@ class Antagonist {
     if (!this.isJumping) {
       this.speedY = this.jumpStrength;
       this.isJumping = true;
+      this.jumpAudio.play();
     }
   }
 
@@ -78,7 +82,7 @@ class Antagonist {
     if (this.isJumping && !this.checkCollisions()) {
       this.speedY += this.gravity;
       this.y += this.speedY;
-      this.sprite.style.top = this.y + "px";
+      this.sprite.style.top = this.y + 'px';
       if (this.y >= 395) {
         this.y = 395;
         this.isJumping = false;
@@ -90,7 +94,7 @@ class Antagonist {
   playerMeleeAttack() {
     let previousWidth = this.width;
     let previousX = this.x;
-
+    this.attackAudio.play();
     if (this.previousDirection === 1) {
       this.width += this.width / 2;
       if (this.checkCollisions()) {
@@ -124,6 +128,7 @@ class Antagonist {
   receiveDamage(dmg) {
     healthBarP2.value -= dmg;
     this.health -= dmg;
+    this.hurtAudio.play();
     playerTwo.sprite.style.backgroundImage =
       playerTwo.previousDirection === -1
         ? `url('./imgs/sprites/${this.type}/HurtReverse.gif')`
@@ -133,6 +138,7 @@ class Antagonist {
 
   checkingIfTheyDie() {
     if (this.health <= 0) {
+      this.deadAudio.play();
       playerTwo.sprite.style.backgroundImage =
         playerTwo.previousDirection === -1
           ? `url('./imgs/sprites/${this.type}/DeadReverse.gif')`

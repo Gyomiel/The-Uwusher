@@ -17,8 +17,10 @@ class Hero {
     this.health = 600;
     this.strength = 100;
     this.spellCounter = 0;
-    this.attackAudio = new Audio(`/imgs/sprites/${type}/AttackSound.mp3`)
+    this.attackAudio = new Audio(`/imgs/sprites/${type}/AttackSound.mp3`);
     this.hurtAudio = new Audio(`/imgs/sprites/${type}/HurtSound.mp3`);
+    this.jumpAudio = new Audio(`/imgs/sprites/${type}/JumpSound.mp3`);
+    this.deadAudio = new Audio(`/imgs/sprites/${type}/DeadSound.mp3`);
     this.sprite = document.createElement('div');
   }
 
@@ -71,6 +73,7 @@ class Hero {
     if (!this.isJumping) {
       this.speedY = this.jumpStrength;
       this.isJumping = true;
+      this.jumpAudio.play();
     }
   }
 
@@ -124,7 +127,7 @@ class Hero {
   receiveDamage(dmg) {
     healthBarP1.value -= dmg;
     this.health -= dmg;
-    this.hurtAudio.play()
+    this.hurtAudio.play();
     playerOne.sprite.style.backgroundImage =
       playerOne.previousDirection === -1
         ? `url('./imgs/sprites/${this.type}/HurtReverse.gif')`
@@ -134,6 +137,7 @@ class Hero {
 
   checkingIfTheyDie() {
     if (this.health <= 0) {
+      this.deadAudio.play();
       playerOne.sprite.style.backgroundImage =
         playerOne.previousDirection === -1
           ? `url('./imgs/sprites/${this.type}/DeadReverse.gif')`
